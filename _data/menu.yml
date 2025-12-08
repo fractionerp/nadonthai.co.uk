@@ -1,0 +1,147 @@
+# Menu categories and items
+categories:
+  - id: starters
+    name: Starters
+    items:
+      - name: Vegetable Tempura
+        description: Mixed vegetables fried in a light golden crispy batter.
+      - name: Sweetcorn Cakes
+        description: Golden fritters of sweet corn in a delicious crispy batter.
+      - name: Siam Chicken Wings
+        description: Chicken wings marinated in Thai herbs and spices to a traditional Thai recipe.
+      - name: Vegetable Spring Rolls
+        description: Rolls filled with seasoned and shredded mixed vegetables and served with a chilli sauce.
+      - name: Satay Chicken
+        description: Tender chicken strips marinated in Thai spices, skewered and served with a peanut sauce.
+      - name: Thai BBQ Pork
+        description: Marinated in Thai spices and served with a tamarind sauce.
+      - name: Prawn Sesame Toast
+        description: Fried triangles of toast topped with blended prawns and sesame seeds.
+      - name: King Prawn Blankets
+        description: Marinated tiger prawns wrapped in a crispy pastry and served with plum sauce.
+      - name: Shumai
+        description: Marinated pork and prawn, steamed and bundled in wonton parcels. Served with sweet soya sauce.
+      - name: Duck Spring Roll
+        description: Juicy shredded duck wrapped in a thin crispy pastry and served with a hoy-sin sauce.
+      - name: Salt & Pepper Squid
+        description: Squid coated in a thin crispy batter, sprinkled with spring onion, chilli and seasoning.
+
+  - id: soups-salad
+    name: Soups and Salads
+    items:
+      - name: Spicy Papaya Salad
+        description: Som Tum, a Thai favourite. Freshly shredded green papaya, king prawn, cherry tomato, roasted peanuts and chilli with spicy citrus dressing.
+      - name: Glass Noodle Salad
+        description: Glass noodles with prawns, spring onion and coriander in spicy Thai dressing.
+      - name: Spicy Sirloin Salad
+        description: Grilled beef strips mixed with salad and hot chilli dressing.
+      - name: Tom Yum Soup
+        description: Classic spicy hot & sour soup with mushroom, fresh chilli, and intensely flavoured with galangal and lemongrass.
+      - name: Tom Kha Soup
+        description: Creamy coconut soup with mushroom, intensely flavoured with galangal and lemongrass. Sprinkled with spicy chilli oil.
+      - name: Fishermans Soup
+        description: A spicy and sour broth with mixed seafood and Thai spices.
+
+  - id: curries
+    name: Curries
+    items:
+      - name: Thai Green Curry
+        description: Thai green curry simmered with coconut milk, vegetables and Thai herbs and sauces.
+      - name: Red Curry
+        description: Thai red curry simmered with coconut milk, vegetables, and Thai spices.
+      - name: Yellow Curry
+        description: Thai yellow curry simmered with coconut milk, potatoes, roast cashew nuts, tomatoes, onions and Thai spices.
+      - name: Massamun Curry
+        description: Simmered with creamy coconut milk, peanuts, onion and potatoes. A milder curry from the south of Thailand.
+      - name: Penang Curry
+        description: The colour, flavour and spices make this curry a unique dish. A creamy coconut curry with fresh kaffir lime leaves.
+      - name: Spicy Jungle Curry
+        description: A medley of vegetables and Thai spices in this spicy country style curry without coconut milk.
+      - name: Duck Curry
+        description: Roasted duck simmered in a red curry sauce with coconut milk, vegetables and Thai herbs and spices.
+
+  - id: rice-noodles
+    name: Rice and Noodles
+    items:
+      - name: Pad Thai Noodles
+        description: The most famous of all Thai noodle dishes. Rice noodles stir fried with egg, spring onion, carrot, beansprout and ground peanut.
+      - name: Drunken Noodles
+        description: Rice noodles stir fried with fresh sweet basil leaves, bamboo, fresh chilli and mixed vegetables in a spicy basil sauce with egg.
+      - name: Pad Se Eww Noodles
+        description: Rice noodles stir fried with egg, mixed vegetables cooked in a dark, sweet soya sauce.
+      - name: Lucky Udon Noodles
+        description: Udon noodles with an aromatic spicy sauce with fresh Thai herbs, bamboo, mixed vegetables and holy basil.
+      - name: Nadon Fried Rice
+        description: Thai style stir fried rice with egg, carrot, onion, bell pepper, mixed vegetables and tomato.
+      - name: Pineapple Fried Rice
+        description: Stir fried rice with egg, bell pepper, pineapple, cashew nut, onion, mixed vegetables and a touch of curry powder.
+      - name: Basil Fried Rice
+        description: Stir fried rice with onion, fine beans, mushroom, chilli and fresh basil leaves.
+
+  - id: stir-fry
+    name: Stir Fry
+    items:
+      - name: Thai Spicy Basil
+        description: Called "pad kra-pow" in Thai. A stir fry of mixed vegetables with fresh chillies, garlic and basil. Aromatic and spicy.
+      - name: Ginger Delight
+        description: Stir-fried with fresh ginger, chilli and mixed vegetables in a ginger sauce.
+      - name: Roasted Cashew Nut
+        description: Stir fry with roasted cashew nuts, chilli and mixed vegetables.
+      - name: Lemongrass and Chilli
+        description: A spicy stir fry with mixed vegetables and fresh lemongrass.
+      - name: Sweet & Sour
+        description: A stir fry with tomatoes, onions, cucumber, and pineapples in a traditional sweet & sour sauce.
+      - name: Asian Bay
+        description: Prawn, scallop, mussels, and squid stir fried with vegetables in a spicy sauce with fresh basil.
+      - name: Asian Marine
+        description: Prawn, scallop, mussels, and squid stir fried with vegetables in a roasted chilli paste sauce.
+      - name: Beef Black Pepper
+        description: Strips of beef stir fried with peppers in cracked black pepper sauce.
+      - name: Prawn Pong Garri
+        description: Prawn stir fried with egg and an aromatic curry sauce.
+      - name: Beef Oyster
+        description: Strips of beef stir fried in an oyster sauce with mixed vegetables.
+      - name: Moo Prik Khing
+        description: Strips of pork loin stir fried in a spicy red curry paste with green beans.
+      - name: Roasted Duck Basil
+        description: Stir fry roast duck with fresh chillies, garlic, basil and mixed vegetables.
+
+  - id: specialty
+    name: Specialty
+    items:
+      - name: Tom Yum Hot Pot
+        description: Tiger prawns in a silky coconut hot & sour soup with mushrooms. Featuring all four Thai flavours - salty, sour, sweet and spicy.
+      - name: Roasted Duck Tamarind
+        description: Fillet of tender crispy duck cooked in a sweet aromatic tamarind sauce, topped with crispy shallots, served on sizzling plate.
+      - name: Weeping Tiger
+        description: Thinly sliced sirloin steak in a house spicy sauce served on a sizzling plate.
+      - name: Honey Roast Duck
+        description: Succulent duck breast with a honey glaze served on a sizzling hot plate.
+      - name: Lamb Shank Massamun
+        description: Mouth-watering lamb shank covered in a rich massamun curry sauce with vegetables and potatoes.
+      - name: Seabass Luisuan
+        description: Lightly battered seabass fillets topped with spicy tamarind sauce, carrot, peanut, ginger, lemongrass, red onion, coriander and fresh chilli.
+      - name: Ginger Steamed Seabass
+        description: Steamed seabass served in a hot & sour seafood sauce with fresh ginger.
+      - name: Seabass Choo Chee
+        description: Lightly battered seabass fillets topped with a creamy red coconut curry sauce.
+      - name: Lemon Steamed Seabass
+        description: Steamed fillets of seabass in spicy sour sauce mixed with celery, garlic, chilli and lemon.
+      - name: Tom Yum Seabass
+        description: Lightly battered seabass fillets served in a classic hot and sour tom yum sauce.
+
+  - id: dessert
+    name: Dessert
+    items:
+      - name: Mango Sticky Rice
+        description: Famous traditional Thai dessert. Fresh mango served with sticky rice drizzled with coconut milk.
+      - name: Deep Fried Vanilla Ice Cream
+        description: Vanilla ice cream inside a crispy breadcrumb shell.
+      - name: Fried Banana
+        description: Banana slices wrapped in a crispy pastry and served with vanilla ice cream.
+      - name: Sticky Toffee Pudding
+        description: Sweet toffee sponge smothered in a butterscotch sauce with vanilla ice cream.
+      - name: Pandan Pancake Roll
+        description: Pandan pancake filled with coconut cooked with brown sugar, served with vanilla ice cream.
+      - name: Premium Ice Cream
+        description: Vanilla, Rich Chocolate, Blackcurrant & Liquorice, Coconut & Pineapple, Passion fruit sorbet, Espresso.

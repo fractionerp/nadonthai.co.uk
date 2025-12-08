@@ -1,0 +1,37 @@
+---
+layout: default
+title: Book a Table
+description: "Book a table at Nadon Thai restaurants in Morpeth, Newcastle or Durham"
+---
+
+<main id="main">
+  <section class="breadcrumbs">
+    <div class="container">
+      <h2>Book a Table</h2>
+    </div>
+  </section>
+
+  <section class="book-a-table">
+    <div class="container">
+      <div class="section-title">
+        <h2>Choose a Restaurant</h2>
+        <p>Select Your Location</p>
+      </div>
+      
+      <div class="row" style="justify-content: center;">
+        {% for location in site.data.locations %}
+        <div class="col-lg-4">
+          <div class="box text-center" style="background: var(--darker-bg); padding: 40px 30px; margin-bottom: 30px;">
+            <h4 style="color: var(--primary-gold); font-family: var(--font-ui); font-size: 24px; margin-bottom: 15px;">{{ location.name }}</h4>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">{{ location.address.street }}<br>{{ location.address.city }}, {{ location.address.postcode }}</p>
+            <p style="color: var(--text-white); margin-bottom: 20px;">
+              <a href="tel:{{ location.phone_link }}">{{ location.phone }}</a>
+            </p>
+            <a href="{{ '/book-a-table-' | append: location.id | append: '.html' | relative_url }}" class="btn btn-primary">Book Here</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</main>

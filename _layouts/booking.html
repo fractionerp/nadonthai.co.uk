@@ -1,0 +1,106 @@
+---
+layout: default
+---
+{% assign location = site.data.locations | where: "id", page.location_id | first %}
+
+<main id="main">
+  <section class="breadcrumbs">
+    <div class="container">
+      <h2>Nadon Thai {{ location.name }}</h2>
+    </div>
+  </section>
+
+  <section class="book-a-table">
+    <div class="container">
+      <div class="section-title">
+        <h2>Reservation</h2>
+        <p>Book a Table</p>
+      </div>
+      
+      <div class="text-center mb-3">
+        <p><a href="{{ '/book-a-table.html' | relative_url }}">&lt; Change Restaurant</a></p>
+        <p style="color: var(--text-muted);">Please use this form to request a booking, we will reply to confirm your booking.<br>
+        If you want to book same day, please call us on <a href="tel:{{ location.phone_link }}">{{ location.phone }}</a></p>
+      </div>
+
+      <div class="row" style="justify-content: center;">
+        <div class="col-lg-6">
+          <form action="{{ page.formspree_id }}" method="post">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" name="_replyto" placeholder="Your email" required>
+            </div>
+            
+            <div class="mb-3">
+              <label for="telephone" class="form-label">Telephone</label>
+              <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="Your telephone number" required>
+            </div>
+            
+            <div class="mb-3">
+              <label for="guests" class="form-label">Number of Guests</label>
+              <input type="number" class="form-control" id="guests" name="number_of_guests" placeholder="Number of guests" min="1" required>
+            </div>
+            
+            <div class="mb-3">
+              <label for="requests" class="form-label">Special Requests</label>
+              <input type="text" class="form-control" id="requests" name="special_requests" placeholder="Special Requests">
+            </div>
+            
+            <div class="form-row">
+              <div class="mb-3">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+              </div>
+              
+              <div class="mb-3">
+                <label for="time" class="form-label">Time</label>
+                <select class="form-select" id="time" name="timebooking" required>
+                  <option value="">---</option>
+                  <option value="12:00">12:00</option>
+                  <option value="12:15">12:15</option>
+                  <option value="12:30">12:30</option>
+                  <option value="12:45">12:45</option>
+                  <option value="13:00">13:00</option>
+                  <option value="13:15">13:15</option>
+                  <option value="13:30">13:30</option>
+                  <option value="13:45">13:45</option>
+                  <option value="14:00">14:00</option>
+                  <option value="17:30">17:30</option>
+                  <option value="17:45">17:45</option>
+                  <option value="18:00">18:00</option>
+                  <option value="18:15">18:15</option>
+                  <option value="18:30">18:30</option>
+                  <option value="18:45">18:45</option>
+                  <option value="19:00">19:00</option>
+                  <option value="19:15">19:15</option>
+                  <option value="19:30">19:30</option>
+                  <option value="19:45">19:45</option>
+                  <option value="20:00">20:00</option>
+                  <option value="20:15">20:15</option>
+                  <option value="20:30">20:30</option>
+                  <option value="20:45">20:45</option>
+                  <option value="21:00">21:00</option>
+                  <option value="21:15">21:15</option>
+                  <option value="21:30">21:30 (Fri & Sat only)</option>
+                </select>
+              </div>
+            </div>
+            
+            <input type="hidden" name="restaurant" value="{{ location.name }}">
+            <input type="hidden" name="_next" value="{{ site.url }}{{ site.baseurl }}/success-{{ page.location_id }}.html">
+            
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-primary">Send Request</button>
+              <p style="color: var(--text-muted); font-size: 13px; margin-top: 15px;">By submitting this form you are accepting the terms of our privacy policy.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

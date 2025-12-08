@@ -1,0 +1,162 @@
+---
+layout: default
+title: null
+description: "Authentic Thai Restaurants in Morpeth, Newcastle and Durham"
+keywords: "thai food, padthai, eating out newcastle upon tyne, newcastle, morpeth, durham, restaurants"
+has_menu_filter: true
+has_specials_tabs: true
+has_back_to_top: true
+---
+
+<!-- Hero Section -->
+<section id="hero">
+  <div class="container text-center">
+    <h1><span>Nadon Thai</span></h1>
+    <h2>Modern Thai Cuisine</h2>
+    <div class="btns">
+      <a href="{{ '/menu.html' | relative_url }}" class="btn-menu">Our Menu</a>
+      <a href="{{ '/book-a-table.html' | relative_url }}" class="btn-book">Book a Table</a>
+    </div>
+  </div>
+</section>
+
+<main id="main">
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-2 order-lg-1 content pt-4">
+          <h3>Welcome to Nadon Thai Restaurants</h3>
+          <br>
+          <p>
+            From Chiang Mai in northern Thailand, Nadon Thai serves modern Thai cuisine from our three locations in the North East since 2010.<br><br>
+            We started our family owned business in Morpeth in 2010 with our first restaurant and following its success we opened two more restaurants.<br><br>
+            All our chefs are Thai and have many years of experience in Thai cuisine. Known as the land of smiles, Thailand is famous for its food and hospitality, which we hope you will experience when visiting us.
+          </p>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2">
+          <div class="about-img">
+            <img src="{{ '/assets/img/pad-se-ew.jpg' | relative_url }}" alt="Pad Se Ew">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Restaurants Section -->
+  <section id="restaurants" class="why-us section-bg">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Restaurants</h2>
+      </div>
+      
+      <div class="row">
+        {% for location in site.data.locations %}
+        <div class="col-lg-4">
+          <div class="box">
+            <h4>{{ location.name }}</h4>
+            <p>{{ location.description }}</p>
+            <a href="{{ '/' | relative_url }}{{ location.slug }}.html">View</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="menu">
+    <div class="container">
+      <div class="section-title">
+        <h2>Menu</h2>
+      </div>
+      
+      <div class="text-center">
+        <ul id="menu-flters">
+          {% for category in site.data.menu.categories %}
+          <li data-filter="{{ category.id }}"{% if forloop.first %} class="filter-active"{% endif %}>{{ category.name }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <div class="row menu-container">
+        {% for category in site.data.menu.categories %}
+        {% for item in category.items %}
+        <div class="col-lg-6 menu-item{% if forloop.parentloop.first %} show{% endif %}" data-category="{{ category.id }}">
+          <div class="menu-content">{{ item.name }}</div>
+          <div class="menu-ingredients">{{ item.description }}</div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Specials Section -->
+  <section id="specials" class="specials section-bg">
+    <div class="container">
+      <div class="section-title">
+        <h2>Specials</h2>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-3">
+          <ul class="nav-tabs">
+            {% for special in site.data.specials %}
+            <li><button class="nav-link{% if forloop.first %} active{% endif %}" data-tab="{{ special.id }}">{{ special.name }}</button></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="col-lg-9 mt-4">
+          <div class="tab-content">
+            {% for special in site.data.specials %}
+            <div id="{{ special.id }}"{% if forloop.first %} class="active"{% endif %}>
+              <div class="row align-items-center">
+                <div class="col-lg-8 details">
+                  <h3>{{ special.name }}</h3>
+                  <p>{{ special.description }}</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                  <img src="{{ special.image | relative_url }}" alt="{{ special.name }}" class="img-fluid">
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations Section -->
+  <section id="locations" class="events">
+    <div class="container">
+      <div class="section-title">
+        <h2>Locations</h2>
+      </div>
+      
+      <div class="row">
+        {% for location in site.data.locations %}
+        <div class="col-lg-4">
+          <div class="event-item">
+            <img src="{{ location.image | relative_url }}" class="img-fluid mb-3" alt="Nadon Thai {{ location.name }}">
+            <h3>{{ location.name }}</h3>
+            <a href="mailto:{{ location.email }}">{{ location.email }}</a>
+            <a href="tel:{{ location.phone_link }}">{{ location.phone }}</a>
+            <p class="mt-4">
+              <strong>Opening Hours:</strong><br>
+              {{ location.hours.lunch }}<br>
+              {{ location.hours.dinner }}<br>
+              {{ location.hours.weekend_note }}
+            </p>
+            <a href="{{ '/' | relative_url }}{{ location.slug }}.html" class="btn btn-secondary">View</a>
+            <a href="{{ '/book-a-table-' | append: location.id | append: '.html' | relative_url }}" class="btn btn-secondary">Book a Table</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% include gallery.html %}
+</main>

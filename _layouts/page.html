@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<main id="main">
+  <section class="breadcrumbs">
+    <div class="container">
+      <h2>{{ page.title }}</h2>
+    </div>
+  </section>
+
+  <section class="inner-page{% if page.section_bg %} section-bg{% endif %}">
+    <div class="container">
+      {{ content }}
+    </div>
+  </section>
+
+  {% if page.show_gallery %}
+  {% include gallery.html %}
+  {% endif %}
+</main>

@@ -1,0 +1,23 @@
+---
+layout: default
+---
+{% assign location = site.data.locations | where: "id", page.location_id | first %}
+
+<main id="main">
+  <section class="breadcrumbs">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Thanks for booking {{ location.name }}!</h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="inner-page">
+    <div class="container">
+      <p>Thanks for your request. We will be in contact shortly to confirm your booking.</p>
+      <p><a href="{{ '/book-a-table.html' | relative_url }}" class="btn btn-primary mt-3">Make Another Booking</a></p>
+    </div>
+  </section>
+
+  {% include gallery.html %}
+</main>

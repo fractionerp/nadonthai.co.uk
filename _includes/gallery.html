@@ -1,0 +1,18 @@
+<section id="gallery" class="gallery">
+  <div class="container">
+    <div class="section-title">
+      <h2>Gallery</h2>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="gallery-grid">
+      {% for i in (1..8) %}
+      <div class="gallery-item">
+        <a href="{{ '/assets/img/gallery/gallery-' | append: i | append: '.jpg' | relative_url }}">
+          <img src="{{ '/assets/img/gallery/gallery-' | append: i | append: '.jpg' | relative_url }}" alt="Gallery {{ i }}" loading="lazy">
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

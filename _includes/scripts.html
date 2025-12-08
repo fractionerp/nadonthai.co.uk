@@ -1,0 +1,77 @@
+<script>
+  // Mobile Navigation Toggle
+  document.querySelector('.mobile-nav-toggle').addEventListener('click', function() {
+    document.querySelector('#navbar').classList.toggle('active');
+  });
+
+  {% if page.has_menu_filter %}
+  // Menu Filter
+  const menuFilters = document.querySelectorAll('#menu-flters li');
+  const menuItems = document.querySelectorAll('.menu-item');
+  
+  menuFilters.forEach(filter => {
+    filter.addEventListener('click', function() {
+      menuFilters.forEach(f => f.classList.remove('filter-active'));
+      this.classList.add('filter-active');
+      
+      const category = this.getAttribute('data-filter');
+      menuItems.forEach(item => {
+        if (item.getAttribute('data-category') === category) {
+          item.classList.add('show');
+        } else {
+          item.classList.remove('show');
+        }
+      });
+    });
+  });
+  {% endif %}
+
+  {% if page.has_specials_tabs %}
+  // Specials Tabs
+  const tabBtns = document.querySelectorAll('.specials .nav-link');
+  const tabPanes = document.querySelectorAll('.specials .tab-content > div');
+  
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanes.forEach(p => p.classList.remove('active'));
+      
+      this.classList.add('active');
+      document.getElementById(this.getAttribute('data-tab')).classList.add('active');
+    });
+  });
+  {% endif %}
+
+  {% if page.has_back_to_top %}
+  // Back to top button
+  const backToTop = document.querySelector('.back-to-top');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        backToTop.classList.add('active');
+      } else {
+        backToTop.classList.remove('active');
+      }
+    });
+    
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href !== '#') {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+  {% endif %}
+</script>

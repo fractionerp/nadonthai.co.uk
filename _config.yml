@@ -1,0 +1,40 @@
+# Site settings
+title: Nadon Thai Restaurants
+description: "Authentic Thai Restaurants in Morpeth, Newcastle and Durham"
+tagline: "Modern Thai Cuisine"
+url: "https://nadonthai.co.uk"
+baseurl: ""
+
+# Contact info
+email: info@nadonthai.co.uk
+phone: "01670 641 431"
+
+# Social links
+social:
+  facebook: "https://facebook.com/people/NadonThai-Newcastle/100063745951218/"
+  instagram: "https://www.instagram.com/nadonthai/"
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
+  - vendor
+
+# Collections (if needed in future)
+# collections:
+#   locations:
+#     output: true
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+      image: "/assets/img/hero-bg.jpg"

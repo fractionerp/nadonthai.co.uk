@@ -1,0 +1,40 @@
+---
+layout: default
+title: Menu
+description: "View our menu of authentic Thai dishes"
+has_menu_filter: true
+has_back_to_top: true
+---
+
+<main id="main">
+  <section class="breadcrumbs">
+    <div class="container">
+      <h2>Menu</h2>
+    </div>
+  </section>
+
+  <section id="menu" class="menu section-bg">
+    <div class="container">
+      <div class="text-center">
+        <ul id="menu-flters">
+          {% for category in site.data.menu.categories %}
+          <li data-filter="{{ category.id }}"{% if forloop.first %} class="filter-active"{% endif %}>{{ category.name }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <div class="row menu-container">
+        {% for category in site.data.menu.categories %}
+        {% for item in category.items %}
+        <div class="col-lg-6 menu-item{% if forloop.parentloop.first %} show{% endif %}" data-category="{{ category.id }}">
+          <div class="menu-content">{{ item.name }}</div>
+          <div class="menu-ingredients">{{ item.description }}</div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% include gallery.html %}
+</main>

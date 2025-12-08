@@ -1,0 +1,58 @@
+---
+layout: default
+---
+{% assign location = site.data.locations | where: "id", page.location_id | first %}
+
+<main id="main">
+  <section class="breadcrumbs">
+    <div class="container">
+      <h2>Nadon Thai {{ location.name }}</h2>
+    </div>
+  </section>
+
+  <section class="inner-page">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <img src="{{ location.image | relative_url }}" class="img-fluid" alt="Nadon Thai {{ location.name }}">
+        </div>
+        <div class="col-lg-4 pt-4">
+          <h3 style="color: var(--primary-gold); font-family: var(--font-ui);">{{ location.name }}</h3>
+          <p>
+            <a href="mailto:{{ location.email }}">{{ location.email }}</a><br>
+            <a href="tel:{{ location.phone_link }}">{{ location.phone }}</a>
+          </p>
+          <p>
+            <strong>Opening Hours:</strong><br>
+            {{ location.hours.lunch }}<br>
+            {{ location.hours.dinner }}<br>
+            {{ location.hours.weekend_note }}
+          </p>
+          <p>
+            {{ location.address.street }}<br>
+            {{ location.address.city }}<br>
+            {{ location.address.postcode }}
+          </p>
+          <a href="{{ '/book-a-table-' | append: location.id | append: '.html' | relative_url }}" class="btn btn-secondary">Book a Table</a>
+        </div>
+      </div>
+      
+      <div class="text-center mt-5 mb-5">
+        <h4 style="color: var(--text-white); margin-bottom: 20px;">MENUS</h4>
+        {% for menu in location.menus %}
+        {% if menu.primary %}
+        <a href="{{ menu.file | relative_url }}" target="_blank" class="btn btn-primary my-2 mx-2">{{ menu.name }}</a>
+        {% endif %}
+        {% endfor %}
+        <br>
+        {% for menu in location.menus %}
+        {% unless menu.primary %}
+        <a href="{{ menu.file | relative_url }}" target="_blank" class="btn btn-secondary mt-5 my-2 mx-2">{{ menu.name }}</a>
+        {% endunless %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% include gallery.html %}
+</main>

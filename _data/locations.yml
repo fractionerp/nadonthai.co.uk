@@ -1,0 +1,111 @@
+# Restaurant locations data
+- id: morpeth
+  name: Morpeth
+  slug: nadon-thai-morpeth
+  email: morpeth@nadonthai.co.uk
+  phone: "01670 641 431"
+  phone_link: "01670641431"
+  address:
+    street: "12A Newgate Street"
+    city: "Morpeth"
+    postcode: "NE61 1BA"
+  description: "Located in Newgate Street, just next to town centre of the historic market town of Morpeth."
+  image: "assets/img/morpeth.jpg"
+  hours:
+    lunch: "12.00 - 14.30"
+    dinner: "17:30 - 22:00"
+    weekend_note: "Open until 22:30 Friday and Saturday"
+  menus:
+    - name: "Evening Menu"
+      file: "assets/menus/menu-morpeth-evening.pdf"
+      primary: true
+    - name: "Lunch Menu"
+      file: "assets/menus/menu-morpeth-lunch.pdf"
+      primary: true
+    - name: "Happy Hour"
+      file: "assets/menus/menu-happy-hour.pdf"
+      primary: true
+    - name: "Take Away"
+      file: "assets/menus/menu-morpeth-takeaway.pdf"
+      primary: true
+    - name: "Childrens"
+      file: "assets/menus/menu-childrens.pdf"
+      primary: true
+    - name: "Dessert"
+      file: "assets/menus/menu-dessert.pdf"
+      primary: true
+    - name: "Allergies"
+      file: "assets/menus/menu-allergies.pdf"
+      primary: false
+
+- id: newcastle
+  name: Newcastle
+  slug: nadon-thai-newcastle
+  email: newcastle@nadonthai.co.uk
+  phone: "0191 261 9768"
+  phone_link: "01912619768"
+  address:
+    street: "32-34 Mosley Street"
+    city: "Newcastle Upon Tyne"
+    postcode: "NE1 1DF"
+  description: "Close to the city centre and train station, our restaurant is located in a listed building."
+  image: "assets/img/newcastle.JPG"
+  hours:
+    lunch: "12.00 - 14.30"
+    dinner: "17:30 - 22:00"
+    weekend_note: "Open until 22:30 Friday and Saturday"
+  menus:
+    - name: "Evening Menu"
+      file: "assets/menus/menu-evening.pdf"
+      primary: true
+    - name: "Lunch Menu"
+      file: "assets/menus/menu-lunch.pdf"
+      primary: true
+    - name: "Happy Hour"
+      file: "assets/menus/menu-happy-hour.pdf"
+      primary: true
+    - name: "Childrens"
+      file: "assets/menus/menu-childrens.pdf"
+      primary: true
+    - name: "Dessert"
+      file: "assets/menus/menu-dessert.pdf"
+      primary: true
+    - name: "Allergies"
+      file: "assets/menus/menu-allergies.pdf"
+      primary: false
+
+- id: durham
+  name: Durham
+  slug: nadon-thai-durham
+  email: durham@nadonthai.co.uk
+  phone: "0191 374 1157"
+  phone_link: "01913741157"
+  address:
+    street: "69/70 Crossgate"
+    city: "Durham"
+    postcode: "DH1 4PR"
+  description: "Just near the Framwellgate bridge of the historic city of Durham."
+  image: "assets/img/durham.jpg"
+  hours:
+    lunch: "12.00 - 14.30"
+    dinner: "17:30 - 22:00"
+    weekend_note: "Open until 22:30 Friday and Saturday"
+  menus:
+    - name: "Evening Menu"
+      file: "assets/menus/menu-evening.pdf"
+      primary: true
+    - name: "Lunch Menu"
+      file: "assets/menus/menu-lunch.pdf"
+      primary: true
+    - name: "Happy Hour"
+      file: "assets/menus/menu-happy-hour.pdf"
+      primary: true
+    - name: "Childrens"
+      file: "assets/menus/menu-childrens.pdf"
+      primary: true
+    - name: "Dessert"
+      file: "assets/menus/menu-dessert.pdf"
+      primary: true
+    - name: "Allergies"
+      file: "assets/menus/menu-allergies.pdf"
+      primary: false
