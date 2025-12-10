@@ -150,13 +150,14 @@ button {
 }
 
 .btn-secondary {
-  background: transparent;
+  background: #6c757d;
   color: var(--text-white);
-  border: 2px solid var(--primary-gold);
+  border: 2px solid #6c757d;
 }
 
 .btn-secondary:hover {
-  background: var(--primary-gold);
+  background: #5a6268;
+  border-color: #545b62;
   color: var(--text-white);
 }
 
