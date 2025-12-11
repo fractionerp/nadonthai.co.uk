@@ -27,7 +27,7 @@ description: "Book a table at Nadon Thai restaurants in Morpeth, Newcastle or Du
             <p style="color: var(--text-white); margin-bottom: 20px;">
               <a href="tel:{{ location.phone_link }}">{{ location.phone }}</a>
             </p>
-            <a href="{{ '/book-a-table-' | append: location.id | append: '.html' | relative_url }}" class="btn btn-primary">Book Here</a>
+            <a href="{{ '/book-a-table-' | append: location.id | append: '/' | relative_url }}" class="btn btn-primary">Book Here</a>
           </div>
         </div>
         {% endfor %}
