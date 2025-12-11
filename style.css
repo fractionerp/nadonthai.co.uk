@@ -1028,6 +1028,29 @@ section {
   -ms-transition: background-color 0.3s ease, border-color 0.3s ease;
   -o-transition: background-color 0.3s ease, border-color 0.3s ease;
 }
+.book-a-table .form-control,
+.book-a-table .form-select {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+  background: rgb(11.5869565217, 10.6956521739, 8.9130434783);
+  border-color: rgb(98.0652173913, 90.5217391304, 75.4347826087);
+  color: white;
+  color-scheme: dark;
+}
+.book-a-table .form-control::placeholder {
+  color: rgb(164.1304347826, 155.0434782609, 136.8695652174);
+}
+.book-a-table .form-control:focus,
+.book-a-table .form-select:focus {
+  border-color: #cda45e;
+  background: rgb(11.5869565217, 10.6956521739, 8.9130434783);
+  color: white;
+  box-shadow: 0 0 0 0.25rem rgba(205, 164, 94, 0.25);
+}
+.book-a-table input[type="date"] {
+  color-scheme: dark;
+}
 .book-a-table p {
   font-size: 0.8125rem;
 }
