@@ -1,8 +1,8 @@
 <header id="header">
   <div class="container-fluid">
-    <a href="{{ '/' | relative_url }}" class="logo"><img src="{{ '/assets/img/nadonlogo.png' | relative_url }}" alt="Nadon Thai"></a>
+    <a href="{{ '/' | relative_url }}" class="logo" aria-label="Nadon Thai Home"><img src="{{ '/assets/img/nadonlogo.png' | relative_url }}" alt="Nadon Thai Logo" width="120" height="40"></a>
     
-    <nav id="navbar" class="navbar">
+    <nav id="navbar" class="navbar" aria-label="Main navigation">
       <ul>
         <li><a class="nav-link{% if page.url == '/' or page.url == '/index.html' %} active{% endif %}" href="{{ '/' | relative_url }}">Home</a></li>
         <li><a class="nav-link{% if page.url contains 'menu' %} active{% endif %}" href="{{ '/menu/' | relative_url }}">Menu</a></li>
@@ -12,7 +12,7 @@
         <li><a href="{{ '/' | relative_url }}{{ location.slug }}/"{% if page.location_id == location.id %} class="active"{% endif %}>{{ location.name }}</a></li>
         {% endfor %}
       </ul>
-      <button class="mobile-nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbar">&#9776;</button>
     </nav>
     
     <a href="{{ '/book-a-table/' | relative_url }}" class="book-a-table-btn d-none d-lg-flex{% if page.url contains 'book-a-table' %} active{% endif %}">Book a table</a>

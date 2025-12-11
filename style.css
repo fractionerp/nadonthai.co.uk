@@ -306,8 +306,11 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 28px;
   cursor: pointer;
   display: none;
-  line-height: 0;
-  transition: 0.5s;
+  line-height: 1;
+  transition: 0.3s;
+  background: none;
+  border: none;
+  padding: 5px 10px;
 }
 
 @media (max-width: 991px) {
@@ -317,6 +320,9 @@ h1, h2, h3, h4, h5, h6 {
   .navbar ul {
     display: none;
   }
+  .book-a-table-btn {
+    display: none !important;
+  }
 }
 .navbar-mobile {
   position: fixed;
@@ -325,7 +331,7 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
   transition: 0.3s;
   z-index: 999;
 }
@@ -333,50 +339,55 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 15px;
   right: 15px;
+  font-size: 32px;
+  z-index: 1001;
 }
 .navbar-mobile ul {
   display: block;
   position: absolute;
-  top: 55px;
+  top: 70px;
   right: 15px;
   bottom: 15px;
   left: 15px;
-  padding: 10px 0;
+  padding: 20px 0;
   border-radius: 6px;
-  background-color: #fff;
+  background-color: #1a1814;
   overflow-y: auto;
   transition: 0.3s;
 }
+.navbar-mobile li {
+  display: block;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.navbar-mobile li:last-child {
+  border-bottom: none;
+}
 .navbar-mobile a, .navbar-mobile a:focus {
-  padding: 10px 20px;
-  font-size: 15px;
-  color: #1a1814;
+  display: block;
+  padding: 15px 20px;
+  font-size: 16px;
+  color: #fff;
 }
 .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
   color: #cda45e;
+  background: rgba(205, 164, 94, 0.1);
 }
-.navbar-mobile .getstarted, .navbar-mobile .getstarted:focus {
-  margin: 15px;
-}
-.navbar-mobile .dropdown ul {
-  position: static;
-  display: none;
-  margin: 10px 20px;
-  padding: 10px 0;
-  z-index: 99;
-  opacity: 1;
-  visibility: visible;
-  background: #fff;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-}
-.navbar-mobile .dropdown ul li {
-  min-width: 200px;
-}
-.navbar-mobile .dropdown ul a {
-  padding: 10px 20px;
-}
-.navbar-mobile .dropdown ul a i {
-  font-size: 12px;
+/* Mobile Book a Table button inside nav */
+.navbar-mobile::after {
+  content: "Book a Table";
+  display: block;
+  position: absolute;
+  bottom: 80px;
+  left: 15px;
+  right: 15px;
+  background: #cda45e;
+  color: #1a1814;
+  text-align: center;
+  padding: 15px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 14px;
 }
 .navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
   color: #cda45e;
