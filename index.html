@@ -98,29 +98,31 @@ has_back_to_top: true
 
   <!-- Specials Section -->
   <section id="specials" class="specials section-bg">
-    <div class="container">
+    <div class="container" data-aos="fade-up">
       <div class="section-title">
         <h2>Specials</h2>
       </div>
       
-      <div class="row">
+      <div class="row" data-aos="fade-up" data-aos-delay="100">
         <div class="col-lg-3">
-          <ul class="nav-tabs">
+          <ul class="nav nav-tabs flex-column">
             {% for special in site.data.specials %}
-            <li><button class="nav-link{% if forloop.first %} active{% endif %}" data-tab="{{ special.id }}">{{ special.name }}</button></li>
+            <li class="nav-item">
+              <a class="nav-link{% if forloop.first %} active show{% endif %}" data-tab="{{ special.id }}" href="#{{ special.id }}">{{ special.name }}</a>
+            </li>
             {% endfor %}
           </ul>
         </div>
-        <div class="col-lg-9 mt-4">
+        <div class="col-lg-9 mt-4 mt-lg-0">
           <div class="tab-content">
             {% for special in site.data.specials %}
-            <div id="{{ special.id }}"{% if forloop.first %} class="active"{% endif %}>
-              <div class="row align-items-center">
-                <div class="col-lg-8 details">
+            <div class="tab-pane{% if forloop.first %} active show{% endif %}" id="{{ special.id }}">
+              <div class="row">
+                <div class="col-lg-8 details order-2 order-lg-1">
                   <h3>{{ special.name }}</h3>
                   <p>{{ special.description }}</p>
                 </div>
-                <div class="col-lg-4 text-center">
+                <div class="col-lg-4 text-center order-1 order-lg-2">
                   <picture>
                     <source srcset="{{ '/assets/img/specials/large/' | append: special.image_file | relative_url }}" media="(min-width: 992px)">
                     <source srcset="{{ '/assets/img/specials/medium/' | append: special.image_file | relative_url }}" media="(min-width: 768px)">

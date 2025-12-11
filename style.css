@@ -157,8 +157,8 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 200px;
+  padding-right: 200px;
 }
 #header.header-scrolled {
   top: 0;
@@ -815,7 +815,11 @@ section {
   margin-right: 0;
 }
 .menu .menu-item {
+  display: none;
   margin-top: 50px;
+}
+.menu .menu-item.show {
+  display: block;
 }
 .menu .menu-img {
   width: 70px;
@@ -895,6 +899,13 @@ section {
   display: none;
 }
 .specials .tab-content > div.active {
+  display: block;
+  animation: fadeIn 0.5s ease-out;
+}
+.specials .tab-pane {
+  display: none;
+}
+.specials .tab-pane.active {
   display: block;
   animation: fadeIn 0.5s ease-out;
 }
