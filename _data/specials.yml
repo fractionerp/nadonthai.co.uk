@@ -2,24 +2,24 @@
 - id: tab-1
   name: Tom Yum Hot Pot
   description: Tiger prawns in a silky coconut hot & sour soup with mushrooms. This is the most famous of all Thai soups. Featuring all four of the Thai flavours - salty, sour, sweet and spicy.
-  image: assets/img/specials/specials-1.png
+  image_file: specials-1.JPG
 
 - id: tab-2
   name: Weeping Tiger
   description: Thinly sliced sirloin steak in a house spicy sauce served on a sizzling plate.
-  image: assets/img/specials/specials-2.png
+  image_file: specials-2.JPG
 
 - id: tab-3
   name: Lambshank Massaman
   description: Mouth-watering lamb shank covered in a rich massamun curry sauce with vegetables and potatoes.
-  image: assets/img/specials/specials-3.png
+  image_file: specials-3.jpeg
 
 - id: tab-4
   name: Roast Duck Curry
   description: Fillet of tender crispy duck cooked in a sweet aromatic tamarind sauce, topped with crispy shallots, served on sizzling plate.
-  image: assets/img/specials/specials-4.png
+  image_file: specials-4.jpeg
 
 - id: tab-5
   name: Seabass Choo Chee
   description: Lightly battered seabass fillets topped with spicy tamarind sauce, carrot, peanut, ginger, lemongrass red onion, coriander and fresh chilli.
-  image: assets/img/specials/specials-5.png
+  image_file: specials-5.JPG

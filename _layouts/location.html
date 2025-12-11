@@ -14,7 +14,11 @@ layout: default
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
-          <img src="{{ location.image | relative_url }}" class="img-fluid" alt="Nadon Thai {{ location.name }}">
+          <picture>
+            <source srcset="{{ '/assets/img/large/' | append: location.image_file | relative_url }}" media="(min-width: 992px)">
+            <source srcset="{{ '/assets/img/medium/' | append: location.image_file | relative_url }}" media="(min-width: 768px)">
+            <img src="{{ '/assets/img/small/' | append: location.image_file | relative_url }}" class="img-fluid" alt="Nadon Thai {{ location.name }}">
+          </picture>
         </div>
         <div class="col-lg-4 pt-4">
           <h3 style="color: var(--primary-gold); font-family: var(--font-ui);">{{ location.name }}</h3>

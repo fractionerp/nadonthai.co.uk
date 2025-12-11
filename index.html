@@ -36,7 +36,11 @@ has_back_to_top: true
         </div>
         <div class="col-lg-6 order-1 order-lg-2">
           <div class="about-img">
-            <img src="{{ '/assets/img/pad-se-ew.jpg' | relative_url }}" alt="Pad Se Ew">
+            <picture>
+              <source srcset="{{ '/assets/img/large/pad-se-ew.jpg' | relative_url }}" media="(min-width: 992px)">
+              <source srcset="{{ '/assets/img/medium/pad-se-ew.jpg' | relative_url }}" media="(min-width: 768px)">
+              <img src="{{ '/assets/img/small/pad-se-ew.jpg' | relative_url }}" alt="Pad Se Ew">
+            </picture>
           </div>
         </div>
       </div>
@@ -117,7 +121,11 @@ has_back_to_top: true
                   <p>{{ special.description }}</p>
                 </div>
                 <div class="col-lg-4 text-center">
-                  <img src="{{ special.image | relative_url }}" alt="{{ special.name }}" class="img-fluid">
+                  <picture>
+                    <source srcset="{{ '/assets/img/specials/large/' | append: special.image_file | relative_url }}" media="(min-width: 992px)">
+                    <source srcset="{{ '/assets/img/specials/medium/' | append: special.image_file | relative_url }}" media="(min-width: 768px)">
+                    <img src="{{ '/assets/img/specials/small/' | append: special.image_file | relative_url }}" alt="{{ special.name }}" class="img-fluid" loading="lazy">
+                  </picture>
                 </div>
               </div>
             </div>
@@ -129,31 +137,47 @@ has_back_to_top: true
   </section>
 
   <!-- Locations Section -->
-  <section id="locations" class="events">
-    <div class="container">
+  <section id="events" class="events">
+    <div class="container" data-aos="fade-up">
       <div class="section-title">
         <h2>Locations</h2>
       </div>
       
-      <div class="row">
-        {% for location in site.data.locations %}
-        <div class="col-lg-4">
-          <div class="event-item">
-            <img src="{{ location.image | relative_url }}" class="img-fluid mb-3" alt="Nadon Thai {{ location.name }}">
-            <h3>{{ location.name }}</h3>
-            <a href="mailto:{{ location.email }}">{{ location.email }}</a>
-            <a href="tel:{{ location.phone_link }}">{{ location.phone }}</a>
-            <p class="mt-4">
-              <strong>Opening Hours:</strong><br>
-              {{ location.hours.lunch }}<br>
-              {{ location.hours.dinner }}<br>
-              {{ location.hours.weekend_note }}
-            </p>
-            <a href="{{ '/' | relative_url }}{{ location.slug }}.html" class="btn btn-secondary">View</a>
-            <a href="{{ '/book-a-table-' | append: location.id | append: '.html' | relative_url }}" class="btn btn-secondary">Book a Table</a>
+      <div class="events-slider swiper" data-aos="fade-up" data-aos-delay="100">
+        <div class="swiper-wrapper">
+          {% for location in site.data.locations %}
+          <div class="swiper-slide">
+            <div class="row event-item">
+              <div class="col-lg-6">
+                <picture>
+                  <source srcset="{{ '/assets/img/large/' | append: location.image_file | relative_url }}" media="(min-width: 992px)">
+                  <source srcset="{{ '/assets/img/medium/' | append: location.image_file | relative_url }}" media="(min-width: 768px)">
+                  <img src="{{ '/assets/img/small/' | append: location.image_file | relative_url }}" class="img-fluid" alt="Nadon Thai {{ location.name }}">
+                </picture>
+              </div>
+              <div class="col-lg-6 pt-4 pt-lg-0 content">
+                <h3>{{ location.name }}</h3>
+                <a href="mailto:{{ location.email }}">{{ location.email }}</a><br>
+                <a href="tel:{{ location.phone_link }}">{{ location.phone }}</a><br><br>
+                Opening Hours:<br>
+                {{ location.hours.lunch }}<br>
+                {{ location.hours.dinner }}<br>
+                {{ location.hours.weekend_note }}<br>
+                <br>
+                {% if location.delivery_links %}
+                {% for link in location.delivery_links %}
+                <a href="{{ link.url }}" target="_blank">{{ link.name }}</a><br>
+                {% endfor %}
+                <br>
+                {% endif %}
+                <a href="{{ '/' | append: location.slug | append: '.html' | relative_url }}" class="btn btn-secondary">View</a>
+                <a href="{{ '/book-a-table-' | append: location.id | append: '.html' | relative_url }}" class="btn btn-secondary">Book a Table</a>
+              </div>
+            </div>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %}
+        <div class="swiper-pagination"></div>
       </div>
     </div>
   </section>

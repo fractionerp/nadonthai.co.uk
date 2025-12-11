@@ -3,19 +3,24 @@
   name: Morpeth
   slug: nadon-thai-morpeth
   email: morpeth@nadonthai.co.uk
-  phone: "01670 641 431"
-  phone_link: "01670641431"
+  phone: "01670 458151"
+  phone_link: "01670458151"
   address:
     street: "12A Newgate Street"
     city: "Morpeth"
     postcode: "NE61 1BA"
   description: "Located in Newgate Street, just next to town centre of the historic market town of Morpeth."
   image: "assets/img/morpeth.jpg"
+  image_file: "morpeth.jpg"
   hours:
     lunch: "12.00 - 14.30"
     dinner: "17:30 - 22:00"
     weekend_note: "Open until 22:30 Friday and Saturday"
   menus:
+    - name: "Christmas Menu"
+      file: "assets/menus/christmas-menu.pdf"
+      primary: true
+      seasonal: true
     - name: "Evening Menu"
       file: "assets/menus/menu-morpeth-evening.pdf"
       primary: true
@@ -23,7 +28,7 @@
       file: "assets/menus/menu-morpeth-lunch.pdf"
       primary: true
     - name: "Happy Hour"
-      file: "assets/menus/menu-happy-hour.pdf"
+      file: "assets/menus/menu-morpeth-happyhour.pdf"
       primary: true
     - name: "Take Away"
       file: "assets/menus/menu-morpeth-takeaway.pdf"
@@ -50,10 +55,18 @@
     postcode: "NE1 1DF"
   description: "Close to the city centre and train station, our restaurant is located in a listed building."
   image: "assets/img/newcastle.JPG"
+  image_file: "newcastle.JPG"
   hours:
     lunch: "12.00 - 14.30"
     dinner: "17:30 - 22:00"
     weekend_note: "Open until 22:30 Friday and Saturday"
+  delivery_links:
+    - name: "Deliveroo"
+      url: "https://deliveroo.co.uk/menu/newcastle/newcastle-city-centre/nadon-thai-newcastle"
+    - name: "Uber"
+      url: "https://www.ubereats.com/gb/store/nadon-thai-newcastle/fpz3mTBlT068HZ4Z9o8PJA?diningMode=DELIVERY"
+    - name: "Just Eat"
+      url: "https://www.just-eat.co.uk/restaurants-nadon-thai---newcastle-spital-tongues/menu#pre-order"
   menus:
     - name: "Evening Menu"
       file: "assets/menus/menu-evening.pdf"
@@ -86,10 +99,16 @@
     postcode: "DH1 4PR"
   description: "Just near the Framwellgate bridge of the historic city of Durham."
   image: "assets/img/durham.jpg"
+  image_file: "durham.jpg"
   hours:
     lunch: "12.00 - 14.30"
     dinner: "17:30 - 22:00"
     weekend_note: "Open until 22:30 Friday and Saturday"
+  delivery_links:
+    - name: "Deliveroo"
+      url: "https://deliveroo.co.uk/"
+    - name: "Uber"
+      url: "https://www.ubereats.com/"
   menus:
     - name: "Evening Menu"
       file: "assets/menus/menu-evening.pdf"

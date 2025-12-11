@@ -5,12 +5,18 @@
     </div>
   </div>
   <div class="container-fluid">
-    <div class="gallery-grid">
+    <div class="row g-0">
       {% for i in (1..8) %}
-      <div class="gallery-item">
-        <a href="{{ '/assets/img/gallery/gallery-' | append: i | append: '.jpg' | relative_url }}">
-          <img src="{{ '/assets/img/gallery/gallery-' | append: i | append: '.jpg' | relative_url }}" alt="Gallery {{ i }}" loading="lazy">
-        </a>
+      <div class="col-lg-3 col-md-4">
+        <div class="gallery-item ratio ratio-4x3">
+          <a href="{{ '/assets/img/gallery/large/gallery-' | append: i | append: '.jpg' | relative_url }}" class="gallery-lightbox" data-gall="gallery-item">
+            <picture>
+              <source srcset="{{ '/assets/img/gallery/large/gallery-' | append: i | append: '.jpg' | relative_url }}" media="(min-width: 992px)">
+              <source srcset="{{ '/assets/img/gallery/medium/gallery-' | append: i | append: '.jpg' | relative_url }}" media="(min-width: 768px)">
+              <img src="{{ '/assets/img/gallery/small/gallery-' | append: i | append: '.jpg' | relative_url }}" alt="Gallery {{ i }}" class="img-fluid object-fit-cover" loading="lazy">
+            </picture>
+          </a>
+        </div>
       </div>
       {% endfor %}
     </div>
