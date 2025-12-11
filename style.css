@@ -152,15 +152,12 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s;
   z-index: 997;
   padding: 15px 0;
-  top: 40px;
-  position: fixed;
-  left: 0;
-  right: 0;
 }
 #header .container-fluid {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row-reverse;
 }
 #header.header-scrolled {
   top: 0;
@@ -409,6 +406,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 #hero .container {
   padding-top: 110px;
+  position: relative;
+  z-index: 2;
 }
 @media (max-width: 992px) {
   #hero .container {
@@ -662,6 +661,10 @@ section {
   left: 0;
   right: 0;
 }
+.about .container {
+  position: relative;
+  z-index: 2;
+}
 .about .about-img {
   position: relative;
   transition: 0.5s;
@@ -769,6 +772,9 @@ section {
 .why-us .box:hover span, .why-us .box:hover h4, .why-us .box:hover p {
   color: #fff;
 }
+.why-us .box:hover a {
+  color: #000;
+}
 
 /*--------------------------------------------------------------
 # Menu Section
@@ -856,13 +862,15 @@ section {
 .specials .nav-tabs {
   border: 0;
 }
+.specials ul.nav-tabs {
+  border-right: 2px solid #cda45e;
+}
 .specials .nav-link {
   border: 0;
   padding: 12px 15px;
   transition: 0.3s;
   color: #fff;
   border-radius: 0;
-  border-right: 2px solid #cda45e;
   font-weight: 600;
   font-size: 15px;
   font-family: "Poppins", sans-serif;
@@ -873,11 +881,7 @@ section {
 .specials .nav-link.active {
   color: #1a1814;
   background: #cda45e;
-  border-color: #cda45e;
   font-family: "Poppins", sans-serif;
-}
-.specials .nav-link:hover {
-  border-color: #cda45e;
 }
 .specials .tab-pane.active {
   animation: fadeIn 0.5s ease-out;
