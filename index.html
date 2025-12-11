@@ -14,8 +14,8 @@ has_back_to_top: true
     <h1><span>Nadon Thai</span></h1>
     <h2>Modern Thai Cuisine</h2>
     <div class="btns">
-      <a href="{{ '/menu.html' | relative_url }}" class="btn-menu">Our Menu</a>
-      <a href="{{ '/book-a-table.html' | relative_url }}" class="btn-book">Book a Table</a>
+      <a href="{{ '/menu/' | relative_url }}" class="btn-menu">Our Menu</a>
+      <a href="{{ '/book-a-table/' | relative_url }}" class="btn-book">Book a Table</a>
     </div>
   </div>
 </section>
@@ -60,7 +60,7 @@ has_back_to_top: true
           <div class="box">
             <h4>{{ location.name }}</h4>
             <p>{{ location.description }}</p>
-            <a href="{{ '/' | relative_url }}{{ location.slug }}.html">View</a>
+            <a href="{{ '/' | relative_url }}{{ location.slug }}/">View</a>
           </div>
         </div>
         {% endfor %}
@@ -170,8 +170,8 @@ has_back_to_top: true
                 {% endfor %}
                 <br>
                 {% endif %}
-                <a href="{{ '/' | append: location.slug | append: '.html' | relative_url }}" class="btn btn-secondary">View</a>
-                <a href="{{ '/book-a-table-' | append: location.id | append: '.html' | relative_url }}" class="btn btn-secondary">Book a Table</a>
+                <a href="{{ '/' | append: location.slug | append: '/' | relative_url }}" class="btn btn-secondary">View</a>
+                <a href="{{ '/book-a-table-' | append: location.id | append: '/' | relative_url }}" class="btn btn-secondary">Book a Table</a>
               </div>
             </div>
           </div>

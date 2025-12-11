@@ -37,7 +37,7 @@ layout: default
             {{ location.address.city }}<br>
             {{ location.address.postcode }}
           </p>
-          <a href="{{ '/book-a-table-' | append: location.id | append: '.html' | relative_url }}" class="btn btn-primary">Book a Table</a>
+          <a href="{{ '/book-a-table-' | append: location.id | append: '/' | relative_url }}" class="btn btn-primary">Book a Table</a>
         </div>
       </div>
       
