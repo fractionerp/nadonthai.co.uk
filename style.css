@@ -1543,4 +1543,30 @@ section {
   color: #fff;
 }
 
+/*--------------------------------------------------------------
+# Inner Page (Location pages)
+--------------------------------------------------------------*/
+.inner-page .btn.btn-primary {
+  background-color: #cda45e;
+  border-color: #cda45e;
+  color: #fff;
+}
+.inner-page .btn.btn-primary:hover,
+.inner-page .btn.btn-primary:focus,
+.inner-page .btn.btn-primary:active {
+  background-color: rgb(189.2322274882, 141.0426540284, 58.7677725118);
+  border-color: rgb(189.2322274882, 141.0426540284, 58.7677725118);
+}
+.inner-page .btn.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #fff;
+}
+.inner-page .btn.btn-secondary:hover,
+.inner-page .btn.btn-secondary:focus,
+.inner-page .btn.btn-secondary:active {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
 /*# sourceMappingURL=style.css.map */
