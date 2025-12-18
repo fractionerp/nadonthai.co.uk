@@ -77,6 +77,9 @@
     - name: "Happy Hour"
       file: "assets/menus/menu-happy-hour.pdf"
       primary: true
+    - name: "Take Away"
+      file: "assets/menus/menu-newcastle-takeaway.pdf"
+      primary: true
     - name: "Childrens"
       file: "assets/menus/menu-childrens.pdf"
       primary: true
@@ -118,6 +121,9 @@
       primary: true
     - name: "Happy Hour"
       file: "assets/menus/menu-happy-hour.pdf"
+      primary: true
+    - name: "Take Away"
+      file: "assets/menus/menu-durham-takeaway.pdf"
       primary: true
     - name: "Childrens"
       file: "assets/menus/menu-childrens.pdf"
