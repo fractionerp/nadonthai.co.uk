@@ -44,7 +44,13 @@ layout: default
       <div class="text-center mt-5 mb-5">
         <h4 style="color: var(--text-white); margin-bottom: 20px;">MENUS</h4>
         {% for menu in location.menus %}
-        {% if menu.primary %}
+        {% if menu.seasonal %}
+        <a href="{{ menu.file | relative_url }}" target="_blank" class="btn btn-primary my-2 mx-2">{{ menu.name }}</a>
+        {% endif %}
+        {% endfor %}
+        <br>
+        {% for menu in location.menus %}
+        {% if menu.primary and menu.seasonal != true %}
         <a href="{{ menu.file | relative_url }}" target="_blank" class="btn btn-primary my-2 mx-2">{{ menu.name }}</a>
         {% endif %}
         {% endfor %}
