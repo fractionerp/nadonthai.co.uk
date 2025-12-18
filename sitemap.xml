@@ -1,0 +1,18 @@
+---
+layout: null
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% assign pages = site.pages | where_exp: "page", "page.sitemap != false" %}
+  {% for page in pages %}
+  {% unless page.url contains 'success' or page.url contains 'error' or page.url contains '404' or page.url == '/sitemap.xml' or page.url == '/robots.txt' %}
+  <url>
+    <loc>{{ site.url }}{{ page.url | replace: 'index.html', '' }}</loc>
+    <lastmod>{{ site.time | date: '%Y-%m-%d' }}</lastmod>
+    <changefreq>{% if page.url == '/' %}weekly{% elsif page.url contains 'menu' %}weekly{% else %}monthly{% endif %}</changefreq>
+    <priority>{% if page.url == '/' %}1.0{% elsif page.url contains 'menu' or page.url contains 'book-a-table' %}0.9{% elsif page.url contains 'nadon-thai' %}0.8{% else %}0.6{% endif %}</priority>
+  </url>
+  {% endunless %}
+  {% endfor %}
+</urlset>

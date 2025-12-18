@@ -3,8 +3,29 @@
 <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
 <meta name="description" content="{{ page.description | default: site.description }}">
 {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
+{% if page.noindex %}
+<meta name="robots" content="noindex, nofollow">
+{% else %}
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="{{ site.url }}{{ page.url | replace: 'index.html', '' }}">
+{% endif %}
+{% if page.canonical %}
+<link rel="canonical" href="{{ page.canonical }}">
+{% else %}
+{% assign canonical_url = page.url | replace: 'index.html', '' %}
+{% unless canonical_url == '/' %}
+{% unless canonical_url contains '.' %}
+{% if canonical_url.size > 0 %}
+{% unless canonical_url == '/' or canonical_url == '' %}
+{% assign last_char = canonical_url | slice: -1 %}
+{% unless last_char == '/' %}
+{% assign canonical_url = canonical_url | append: '/' %}
+{% endunless %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+{% endunless %}
+<link rel="canonical" href="{{ site.url }}{{ canonical_url }}">
+{% endif %}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">

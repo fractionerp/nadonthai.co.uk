@@ -1,0 +1,13 @@
+# Robots.txt for nadonthai.co.uk
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://nadonthai.co.uk/sitemap.xml
+
+# Disallow non-content pages
+Disallow: /success-morpeth/
+Disallow: /success-newcastle/
+Disallow: /success-durham/
+Disallow: /error/
