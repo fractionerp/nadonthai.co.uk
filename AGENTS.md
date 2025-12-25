@@ -1,15 +1,6 @@
 # AI Agent Instructions
 
-## Working in TenX Environment
-
-You are currently working in a **TenX-managed terminal session** for this project.
-
-### Terminal Session
-- **Tmux session name**: Matches this project's folder name
-- **Working directory**: This project's root directory
-- **Copilot**: Auto-started with `--allow-all-tools --allow-all-urls`
-
-### Git Workflow
+## Git Workflow
 
 **MANDATORY: Check for uncommitted changes at the START of each new task:**
 ```bash
