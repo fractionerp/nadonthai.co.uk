@@ -39,21 +39,36 @@ git add -A && git commit -m "prefix: description" && git push
 # Nadon Thai Restaurant Site - Jekyll
 
 ## Overview
-Website for Nadon Thai restaurant chain (Morpeth, Newcastle, Durham).
+Website for Nadon Thai restaurant chain (Morpeth, Newcastle, Durham). Built with Jekyll, deployed to GitHub Pages.
 
 ## Access
 - **Production**: https://nadonthai.co.uk
-- **Local Dev**: http://localhost:8080/nadonthai
+- **Local Dev**: https://tenx.fraction.app/nadonthai.co.uk/
+- **Build Output**: `/home/dev/tenx/apps/websites/nadonthai.co.uk/_site/`
 
-## Build Commands
+## Important: Two Configuration Files
+
+### `_config.yml` (Production) - DO NOT modify for local dev
+- `url: "https://nadonthai.co.uk"`
+- `baseurl: ""`
+
+### `_config_dev.yml` (Development) - Use for local dev
+- `url: "https://tenx.fraction.app"`
+- `baseurl: "/nadonthai.co.uk"`
+
+## Building the Site
+
+**IMPORTANT: After making ANY changes, you MUST rebuild:**
+
 ```bash
-# Build for local development
-docker compose exec jekyll jekyll build --config _config.yml,_config_dev.yml
+# Build with dev config for local testing
+docker exec websites_jekyll bash -c "cd /srv/nadonthai.co.uk && jekyll build --config _config.yml,_config_dev.yml"
 
-# Watch mode
-docker compose exec jekyll jekyll build --config _config.yml,_config_dev.yml --watch
+# Verify build
+curl -I https://tenx.fraction.app/nadonthai.co.uk/
 ```
 
 ## Key Info
 - Restaurant locations: Morpeth, Newcastle, Durham
 - Social: Facebook, Instagram
+- Use `{{ site.baseurl }}/assets/...` for all asset paths
