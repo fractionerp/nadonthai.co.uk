@@ -12,6 +12,7 @@
         <li><a href="{{ '/' | relative_url }}{{ location.slug }}/"{% if page.location_id == location.id %} class="active"{% endif %}>{{ location.name }}</a></li>
         {% endfor %}
       </ul>
+      <a href="{{ '/book-a-table/' | relative_url }}" class="mobile-book-btn">Book a Table</a>
       <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbar">&#9776;</button>
     </nav>
     

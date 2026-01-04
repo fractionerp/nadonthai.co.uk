@@ -301,7 +301,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /**
-* Mobile Navigation 
+* Mobile Navigation
 */
 .mobile-nav-toggle {
   color: #fff;
@@ -314,10 +314,28 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   padding: 5px 10px;
 }
+.mobile-book-btn {
+  display: none;
+}
 
 @media (max-width: 991px) {
+  #header .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
   .mobile-nav-toggle {
     display: block;
+    order: 3;
+    margin-left: auto;
+  }
+  #header .logo {
+    order: 1;
+  }
+  .navbar {
+    order: 2;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
   }
   .navbar ul {
     display: none;
@@ -375,8 +393,7 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(205, 164, 94, 0.1);
 }
 /* Mobile Book a Table button inside nav */
-.navbar-mobile::after {
-  content: "Book a Table";
+.navbar-mobile .mobile-book-btn {
   display: block;
   position: absolute;
   bottom: 80px;
@@ -390,6 +407,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   text-transform: uppercase;
   font-size: 14px;
+  text-decoration: none;
+}
+.navbar-mobile .mobile-book-btn:hover {
+  background: rgb(189.2322274882, 141.0426540284, 58.7677725118);
+  color: #1a1814;
 }
 .navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
   color: #cda45e;
