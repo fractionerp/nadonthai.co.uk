@@ -55,6 +55,8 @@ layout: default
         {% endif %}
         {% endfor %}
         <br>
+        <a href="{{ '/assets/menus/menu-gluten-free.pdf' | relative_url }}" target="_blank" class="btn btn-primary my-2 mx-2">Gluten Free and Vegan</a>
+        <br>
         {% for menu in location.menus %}
         {% unless menu.primary %}
         <a href="{{ menu.file | relative_url }}" target="_blank" class="btn btn-secondary mt-5 my-2 mx-2">{{ menu.name }}</a>
