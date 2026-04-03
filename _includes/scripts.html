@@ -58,10 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
         this.innerHTML = '&times;';
         this.setAttribute('aria-expanded', 'true');
         document.body.style.overflow = 'hidden';
+        header.classList.add('has-mobile-nav');
       } else {
         this.innerHTML = '&#9776;';
         this.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
+        header.classList.remove('has-mobile-nav');
       }
     });
     
@@ -73,19 +75,21 @@ document.addEventListener('DOMContentLoaded', function() {
           mobileNavToggle.innerHTML = '&#9776;';
           mobileNavToggle.setAttribute('aria-expanded', 'false');
           document.body.style.overflow = '';
+          header.classList.remove('has-mobile-nav');
         }
       });
     });
-    
+
     // Close mobile nav when clicking outside
     document.addEventListener('click', function(e) {
-      if (navbar.classList.contains('navbar-mobile') && 
-          !navbar.contains(e.target) && 
+      if (navbar.classList.contains('navbar-mobile') &&
+          !navbar.contains(e.target) &&
           !mobileNavToggle.contains(e.target)) {
         navbar.classList.remove('navbar-mobile');
         mobileNavToggle.innerHTML = '&#9776;';
         mobileNavToggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
+        header.classList.remove('has-mobile-nav');
       }
     });
   }

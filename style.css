@@ -360,6 +360,7 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(0, 0, 0, 0.95);
   transition: 0.3s;
   z-index: 999;
+  padding-top: 70px;
 }
 .navbar-mobile .mobile-nav-toggle {
   position: absolute;
@@ -380,6 +381,9 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #1a1814;
   overflow-y: auto;
   transition: 0.3s;
+}
+#header.has-mobile-nav {
+  z-index: 1000;
 }
 .navbar-mobile li {
   display: block;
