@@ -6,12 +6,12 @@ sitemap: false
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   {% assign pages = site.pages | where_exp: "page", "page.sitemap != false" %}
   {% for page in pages %}
-  {% unless page.url contains 'success' or page.url contains 'error' or page.url contains '404' or page.url == '/sitemap.xml' or page.url == '/robots.txt' %}
+  {% unless page.url contains 'success' or page.url contains 'error' or page.url contains '404' or page.url == '/sitemap.xml' or page.url == '/robots.txt' or page.url == '/style.css' %}
   <url>
     <loc>{{ site.url }}{{ page.url | replace: 'index.html', '' }}</loc>
     <lastmod>{{ site.time | date: '%Y-%m-%d' }}</lastmod>
-    <changefreq>{% if page.url == '/' %}weekly{% elsif page.url contains 'menu' %}weekly{% else %}monthly{% endif %}</changefreq>
-    <priority>{% if page.url == '/' %}1.0{% elsif page.url contains 'menu' or page.url contains 'book-a-table' %}0.9{% elsif page.url contains 'nadon-thai' %}0.8{% else %}0.6{% endif %}</priority>
+    <changefreq>{% if page.url == '/' %}weekly{% elsif page.url contains 'menu' or page.url contains 'nadon-thai' %}weekly{% elsif page.url contains 'book-a-table' or page.url contains 'gift-vouchers' %}monthly{% else %}monthly{% endif %}</changefreq>
+    <priority>{% if page.url == '/' %}1.0{% elsif page.url contains 'menu' %}0.9{% elsif page.url contains 'nadon-thai-morpeth' or page.url contains 'nadon-thai-newcastle' or page.url contains 'nadon-thai-durham' %}0.9{% elsif page.url contains 'book-a-table' %}0.8{% elsif page.url contains 'gift-vouchers' or page.url contains 'gallery' %}0.7{% else %}0.5{% endif %}</priority>
   </url>
   {% endunless %}
   {% endfor %}
