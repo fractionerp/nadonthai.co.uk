@@ -3,35 +3,35 @@ layout: default
 title: null
 description: "Authentic Thai Restaurants in Morpeth, Newcastle and Durham"
 keywords: "thai food, padthai, eating out newcastle upon tyne, newcastle, morpeth, durham, restaurants"
-has_menu_filter: true
-has_specials_tabs: true
 has_back_to_top: true
 ---
 
 <!-- Hero Section -->
-<section id="hero">
+<section id="hero" style="background-image: url('{{ '/assets/img/hero-bg.JPG' | relative_url }}')">
   <div class="container text-center">
     <h1><span>Nadon Thai</span></h1>
-    <h2>Modern Thai Cuisine</h2>
+    <h2>Authentic Thai Food. Fresh Ingredients. Family-Run Since 2010.</h2>
+    <p class="hero-subtext">Enjoy traditional Thai dishes prepared by experienced chefs, served in a warm and relaxed setting across our three North East locations.</p>
     <div class="btns">
-      <a href="{{ '/menu/' | relative_url }}" class="btn-menu">Our Menu</a>
       <a href="{{ '/book-a-table/' | relative_url }}" class="btn-book">Book a Table</a>
+      <a href="{{ '/menu/' | relative_url }}" class="btn-menu">View Menu</a>
+      <a href="#takeaway" class="btn-menu">Order Takeaway</a>
     </div>
   </div>
 </section>
 
 <main id="main">
-  <!-- About Section -->
-  <section id="about" class="about">
+  <!-- Intro Section -->
+  <section id="about" class="about" style="background-image: url('{{ '/assets/img/about-bg.jpg' | relative_url }}')">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6 order-2 order-lg-1 content pt-4">
-          <h3>Welcome to Nadon Thai Restaurants</h3>
-          <br>
+          <h3>Welcome to Nadon Thai</h3>
           <p>
-            From Chiang Mai in northern Thailand, Nadon Thai serves modern Thai cuisine from our three locations in the North East since 2010.<br><br>
-            We started our family owned business in Morpeth in 2010 with our first restaurant and following its success we opened two more restaurants.<br><br>
-            All our chefs are Thai and have many years of experience in Thai cuisine. Known as the land of smiles, Thailand is famous for its food and hospitality, which we hope you will experience when visiting us.
+            At Nadon Thai, we bring authentic Thai flavours to the North East using fresh ingredients and traditional recipes.
+          </p>
+          <p>
+            As a family-run restaurant established in 2010, we've built a loyal local following by focusing on quality food, friendly service and a welcoming atmosphere.
           </p>
         </div>
         <div class="col-lg-6 order-1 order-lg-2">
@@ -39,7 +39,7 @@ has_back_to_top: true
             <picture>
               <source srcset="{{ '/assets/img/large/pad-se-ew.jpg' | relative_url }}" media="(min-width: 992px)">
               <source srcset="{{ '/assets/img/medium/pad-se-ew.jpg' | relative_url }}" media="(min-width: 768px)">
-              <img src="{{ '/assets/img/small/pad-se-ew.jpg' | relative_url }}" alt="Pad Se Ew">
+              <img src="{{ '/assets/img/small/pad-se-ew.jpg' | relative_url }}" alt="Authentic Thai dish">
             </picture>
           </div>
         </div>
@@ -47,20 +47,31 @@ has_back_to_top: true
     </div>
   </section>
 
-  <!-- Our Restaurants Section -->
-  <section id="restaurants" class="why-us section-bg">
-    <div class="container">
+  <!-- Our Locations Section -->
+  <section id="locations" class="locations section-bg">
+    <div class="container" data-aos="fade-up">
       <div class="section-title">
-        <h2>Our Restaurants</h2>
+        <h2>Discover</h2>
+        <p>Our Locations</p>
       </div>
-      
+
       <div class="row">
         {% for location in site.data.locations %}
-        <div class="col-lg-4">
-          <div class="box">
-            <h4>{{ location.name }}</h4>
-            <p>{{ location.description }}</p>
-            <a href="{{ '/' | relative_url }}{{ location.slug }}/">View</a>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
+          <div class="location-card">
+            <picture>
+              <source srcset="{{ '/assets/img/large/' | append: location.image_file | relative_url }}" media="(min-width: 992px)">
+              <source srcset="{{ '/assets/img/medium/' | append: location.image_file | relative_url }}" media="(min-width: 768px)">
+              <img src="{{ '/assets/img/small/' | append: location.image_file | relative_url }}" alt="Nadon Thai {{ location.name }}">
+            </picture>
+            <div class="location-card-body">
+              <h4>{{ location.name }}</h4>
+              <p>{% if location.id == 'morpeth' %}A cosy and welcoming setting, perfect for relaxed dining.{% elsif location.id == 'newcastle' %}Conveniently located for city dining, ideal for evenings out and group bookings.{% else %}A comfortable space to enjoy authentic Thai cuisine in the heart of the city.{% endif %}</p>
+              <div class="location-card-btns">
+                <a href="{{ '/book-a-table-' | append: location.id | append: '/' | relative_url }}" class="btn-gold">Book {{ location.name }}</a>
+                <a href="{{ '/' | append: location.slug | append: '/' | relative_url }}" class="btn-outline-gold">View Menu</a>
+              </div>
+            </div>
           </div>
         </div>
         {% endfor %}
@@ -68,118 +79,173 @@ has_back_to_top: true
     </div>
   </section>
 
-  <!-- Menu Section -->
-  <section id="menu" class="menu">
-    <div class="container">
-      <div class="section-title">
-        <h2>Menu</h2>
-      </div>
-      
-      <div class="text-center">
-        <ul id="menu-flters">
-          {% for category in site.data.menu.categories %}
-          <li data-filter="{{ category.id }}"{% if forloop.first %} class="filter-active"{% endif %}>{{ category.name }}</li>
-          {% endfor %}
-        </ul>
-      </div>
-      
-      <div class="row menu-container">
-        {% for category in site.data.menu.categories %}
-        {% for item in category.items %}
-        <div class="col-lg-6 menu-item{% if forloop.parentloop.first %} show{% endif %}" data-category="{{ category.id }}">
-          <div class="menu-content">{{ item.name }}</div>
-          <div class="menu-ingredients">{{ item.description }}</div>
-        </div>
-        {% endfor %}
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
-  <!-- Specials Section -->
-  <section id="specials" class="specials section-bg">
+  <!-- Our Food Section -->
+  <section id="our-food" class="our-food">
     <div class="container" data-aos="fade-up">
       <div class="section-title">
-        <h2>Specials</h2>
+        <h2>Taste</h2>
+        <p>Our Food</p>
       </div>
-      
-      <div class="row" data-aos="fade-up" data-aos-delay="100">
-        <div class="col-lg-3">
-          <ul class="nav nav-tabs flex-column">
-            {% for special in site.data.specials %}
-            <li class="nav-item">
-              <a class="nav-link{% if forloop.first %} active show{% endif %}" data-tab="{{ special.id }}" href="#{{ special.id }}">{{ special.name }}</a>
-            </li>
-            {% endfor %}
+
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <picture>
+            <source srcset="{{ '/assets/img/gallery/large/gallery-1.jpg' | relative_url }}" media="(min-width: 992px)">
+            <source srcset="{{ '/assets/img/gallery/medium/gallery-1.jpg' | relative_url }}" media="(min-width: 768px)">
+            <img src="{{ '/assets/img/gallery/small/gallery-1.jpg' | relative_url }}" alt="Thai cuisine" class="img-fluid food-img">
+          </picture>
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0">
+          <p>We serve a wide range of traditional Thai dishes, including:</p>
+          <ul class="food-list">
+            <li>Classic Pad Thai</li>
+            <li>Rich and aromatic Thai curries</li>
+            <li>Fresh stir-fries and seafood dishes</li>
+            <li>Vegetarian and vegan options</li>
           </ul>
+          <p>Every dish is prepared using authentic ingredients to deliver real Thai flavour.</p>
+          <a href="{{ '/menu/' | relative_url }}" class="btn-gold">Explore Full Menu</a>
         </div>
-        <div class="col-lg-9 mt-4 mt-lg-0">
-          <div class="tab-content">
-            {% for special in site.data.specials %}
-            <div class="tab-pane{% if forloop.first %} active show{% endif %}" id="{{ special.id }}">
-              <div class="row">
-                <div class="col-lg-8 details order-2 order-lg-1">
-                  <h3>{{ special.name }}</h3>
-                  <p>{{ special.description }}</p>
-                </div>
-                <div class="col-lg-4 text-center order-1 order-lg-2">
-                  <picture>
-                    <source srcset="{{ '/assets/img/specials/large/' | append: special.image_file | relative_url }}" media="(min-width: 992px)">
-                    <source srcset="{{ '/assets/img/specials/medium/' | append: special.image_file | relative_url }}" media="(min-width: 768px)">
-                    <img src="{{ '/assets/img/specials/small/' | append: special.image_file | relative_url }}" alt="{{ special.name }}" class="img-fluid" loading="lazy">
-                  </picture>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Dine With Us Section -->
+  <section id="why-us" class="why-us section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Experience</h2>
+        <p>Why Dine With Us</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="box">
+            <span>01</span>
+            <h4>Authentic Thai Cooking</h4>
+            <p>Prepared by experienced chefs using traditional methods.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="box">
+            <span>02</span>
+            <h4>Family-Run Restaurant</h4>
+            <p>Serving customers across the North East since 2010.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="box">
+            <span>03</span>
+            <h4>Fresh Ingredients</h4>
+            <p>Quality produce used in every dish.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="box">
+            <span>04</span>
+            <h4>Three Locations</h4>
+            <p>Morpeth, Newcastle and Durham.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Locations Section -->
-  <section id="events" class="events">
-    <div class="container" data-aos="fade-up">
+  <!-- Takeaway Section -->
+  <section id="takeaway" class="takeaway" style="background-image: url('{{ '/assets/img/events-bg.jpg' | relative_url }}')">
+    <div class="container text-center" data-aos="fade-up">
       <div class="section-title">
-        <h2>Locations</h2>
+        <h2>At Home</h2>
+        <p>Takeaway and Delivery</p>
       </div>
-      
-      <div class="events-slider swiper" data-aos="fade-up" data-aos-delay="100">
-        <div class="swiper-wrapper">
-          {% for location in site.data.locations %}
-          <div class="swiper-slide">
-            <div class="row event-item">
-              <div class="col-lg-6">
-                <picture>
-                  <source srcset="{{ '/assets/img/large/' | append: location.image_file | relative_url }}" media="(min-width: 992px)">
-                  <source srcset="{{ '/assets/img/medium/' | append: location.image_file | relative_url }}" media="(min-width: 768px)">
-                  <img src="{{ '/assets/img/small/' | append: location.image_file | relative_url }}" class="img-fluid" alt="Nadon Thai {{ location.name }}">
-                </picture>
-              </div>
-              <div class="col-lg-6 pt-4 pt-lg-0 content">
-                <h3>{{ location.name }}</h3>
-                <a href="mailto:{{ location.email }}">{{ location.email }}</a><br>
-                <a href="tel:{{ location.phone_link }}">{{ location.phone }}</a><br><br>
-                Opening Hours:<br>
-                {{ location.hours.lunch }}<br>
-                {{ location.hours.dinner }}<br>
-                {{ location.hours.weekend_note }}<br>
-                <br>
-                {% if location.delivery_links %}
-                {% for link in location.delivery_links %}
-                <a href="{{ link.url }}" target="_blank">{{ link.name }}</a><br>
-                {% endfor %}
-                <br>
-                {% endif %}
-                <a href="{{ '/' | append: location.slug | append: '/' | relative_url }}" class="btn btn-secondary">View</a>
-                <a href="{{ '/book-a-table-' | append: location.id | append: '/' | relative_url }}" class="btn btn-secondary">Book a Table</a>
-              </div>
-            </div>
-          </div>
+      <p class="takeaway-text">Prefer to enjoy Nadon Thai at home? We offer takeaway and collection across all locations, with the same quality and flavour as dining in.</p>
+      <div class="takeaway-links">
+        {% for location in site.data.locations %}
+        {% if location.delivery_links %}
+        <div class="takeaway-location">
+          <h4>{{ location.name }}</h4>
+          {% for link in location.delivery_links %}
+          <a href="{{ link.url }}" target="_blank" class="btn-outline-gold">{{ link.name }}</a>
           {% endfor %}
         </div>
-        <div class="swiper-pagination"></div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Reviews</h2>
+        <p>What Our Customers Say</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="testimonial-card">
+            <p>"Great food and friendly service — always consistent."</p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="testimonial-card">
+            <p>"Best Thai food we've had locally."</p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="testimonial-card">
+            <p>"Lovely atmosphere and authentic dishes."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Find Us Section -->
+  <section id="find-us" class="find-us">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Visit</h2>
+        <p>Find Us</p>
+      </div>
+
+      <div class="row">
+        {% for location in site.data.locations %}
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
+          <div class="find-us-card">
+            <h4>{{ location.name }}</h4>
+            <p>
+              {{ location.address.street }}<br>
+              {{ location.address.city }}<br>
+              {{ location.address.postcode }}
+            </p>
+            <p>
+              <a href="tel:{{ location.phone_link }}">{{ location.phone }}</a><br>
+              <a href="mailto:{{ location.email }}">{{ location.email }}</a>
+            </p>
+            <p>
+              <strong>Opening Hours:</strong><br>
+              Lunch: {{ location.hours.lunch }}<br>
+              Dinner: {{ location.hours.dinner }}<br>
+              {{ location.hours.weekend_note }}
+            </p>
+            <a href="{{ '/' | append: location.slug | append: '/' | relative_url }}" class="btn-outline-gold">View Location</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section id="final-cta" class="final-cta" style="background-image: url('{{ '/assets/img/about-bg.jpg' | relative_url }}')">
+    <div class="container text-center" data-aos="fade-up">
+      <h3>Ready to Enjoy Authentic Thai Food?</h3>
+      <p>Book your table or order takeaway today.</p>
+      <div class="btns">
+        <a href="{{ '/book-a-table/' | relative_url }}" class="btn-gold">Book a Table</a>
+        <a href="#takeaway" class="btn-outline-gold">Order Now</a>
       </div>
     </div>
   </section>

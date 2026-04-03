@@ -2,6 +2,7 @@
 layout: default
 title: Book a Table
 description: "Book a table at Nadon Thai restaurants in Morpeth, Newcastle or Durham"
+has_back_to_top: true
 ---
 
 <main id="main">
@@ -11,25 +12,153 @@ description: "Book a table at Nadon Thai restaurants in Morpeth, Newcastle or Du
     </div>
   </section>
 
-  <section class="book-a-table">
-    <div class="container">
+  <!-- Intro -->
+  <section class="menu-intro">
+    <div class="container text-center" data-aos="fade-up">
+      <h3>Book Your Table in Seconds</h3>
+      <p>Enjoy authentic Thai dining at Nadon Thai — choose your location and reserve your table quickly and easily.</p>
+    </div>
+  </section>
+
+  <!-- Select Location -->
+  <section class="locations section-bg">
+    <div class="container" data-aos="fade-up">
       <div class="section-title">
-        <h2>Choose a Restaurant</h2>
+        <h2>Choose</h2>
         <p>Select Your Location</p>
       </div>
-      
-      <div class="row" style="justify-content: center;">
+
+      <div class="row">
         {% for location in site.data.locations %}
-        <div class="col-lg-4">
-          <div class="box text-center" style="background: var(--darker-bg); padding: 40px 30px; margin-bottom: 30px;">
-            <h4 style="color: var(--primary-gold); font-family: var(--font-ui); font-size: 24px; margin-bottom: 15px;">{{ location.name }}</h4>
-            <p style="color: var(--text-muted); margin-bottom: 20px;">{{ location.address.street }}<br>{{ location.address.city }}, {{ location.address.postcode }}</p>
-            <p style="color: var(--text-white); margin-bottom: 20px;">
-              <a href="tel:{{ location.phone_link }}">{{ location.phone }}</a>
-            </p>
-            <a href="{{ '/book-a-table-' | append: location.id | append: '/' | relative_url }}" class="btn btn-primary">Book Here</a>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
+          <div class="location-card">
+            <picture>
+              <source srcset="{{ '/assets/img/large/' | append: location.image_file | relative_url }}" media="(min-width: 992px)">
+              <source srcset="{{ '/assets/img/medium/' | append: location.image_file | relative_url }}" media="(min-width: 768px)">
+              <img src="{{ '/assets/img/small/' | append: location.image_file | relative_url }}" alt="Nadon Thai {{ location.name }}">
+            </picture>
+            <div class="location-card-body">
+              <h4>{{ location.name }}</h4>
+              <p>{% if location.id == 'morpeth' %}A cosy and welcoming setting, perfect for relaxed dining.{% elsif location.id == 'newcastle' %}Ideal for city dining, evenings out and group bookings.{% else %}A comfortable and relaxed space in the heart of the city.{% endif %}</p>
+              <div class="location-card-btns">
+                <a href="{{ '/book-a-table-' | append: location.id | append: '/' | relative_url }}" class="btn-gold">Book {{ location.name }} Table</a>
+              </div>
+            </div>
           </div>
         </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Gift Voucher -->
+  <section class="gift-voucher-banner">
+    <div class="container text-center">
+      <h4>Buying as a Gift?</h4>
+      <p>Treat someone to an authentic Thai dining experience with a Nadon Thai gift voucher.</p>
+      <p>A simple and flexible gift, perfect for any occasion.</p>
+      <a href="{{ '/gift-vouchers/' | relative_url }}" class="btn-outline-gold">View Gift Vouchers</a>
+      <p class="gift-voucher-note">Gift vouchers can be used at all Nadon Thai locations.</p>
+    </div>
+  </section>
+
+  <!-- Planning Your Visit -->
+  <section class="our-food">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Prepare</h2>
+        <p>Planning Your Visit</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <p>To help you prepare:</p>
+          <ul class="food-list">
+            <li>We recommend booking in advance, especially evenings and weekends</li>
+            <li>For larger groups, please contact us directly</li>
+            <li>Walk-ins are welcome where availability allows</li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <p>If you have any specific requirements, please let us know when booking:</p>
+          <ul class="food-list">
+            <li>Dietary requirements</li>
+            <li>Allergies</li>
+            <li>Celebrations or special occasions</li>
+          </ul>
+          <p style="color: #aaa;">Our team will do their best to accommodate your request.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us -->
+  <section class="find-us section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Get in Touch</h2>
+        <p>Contact Us</p>
+      </div>
+      <p class="text-center" style="color: #ccc; margin-bottom: 30px;">Prefer to book directly or have a question?</p>
+
+      <div class="row">
+        {% for location in site.data.locations %}
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
+          <div class="find-us-card">
+            <h4>{{ location.name }}</h4>
+            <p>
+              <a href="tel:{{ location.phone_link }}">{{ location.phone }}</a><br>
+              <a href="mailto:{{ location.email }}">{{ location.email }}</a>
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Book -->
+  <section class="why-us">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Experience</h2>
+        <p>Why Book With Nadon Thai</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="box">
+            <span>01</span>
+            <h4>Authentic Thai Food</h4>
+            <p>Prepared fresh using traditional recipes.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="box">
+            <span>02</span>
+            <h4>Three Convenient Locations</h4>
+            <p>Morpeth, Newcastle and Durham.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="box">
+            <span>03</span>
+            <h4>Friendly Service</h4>
+            <p>A welcoming experience every time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta" style="background-image: url('{{ '/assets/img/about-bg.jpg' | relative_url }}')">
+    <div class="container text-center" data-aos="fade-up">
+      <h3>Ready to Reserve Your Table?</h3>
+      <p>Book now and enjoy authentic Thai food at your nearest Nadon Thai restaurant.</p>
+      <div class="btns">
+        {% for location in site.data.locations %}
+        <a href="{{ '/book-a-table-' | append: location.id | append: '/' | relative_url }}" class="btn-gold">Book {{ location.name }}</a>
         {% endfor %}
       </div>
     </div>

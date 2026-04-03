@@ -1,7 +1,261 @@
 ---
-layout: location
+layout: default
 title: Nadon Thai Newcastle - Authentic Thai Cuisine
-description: "Authentic Thai Cuisine in Newcastle Upon Tyne"
-keywords: "thai food, newcastle, newcastle upon tyne, nadon thai, thai cuisine"
+description: "Authentic Thai food in Newcastle city centre"
+keywords: "thai food, newcastle, newcastle upon tyne, nadon thai, thai cuisine, thai restaurant newcastle"
 location_id: newcastle
+has_back_to_top: true
 ---
+{% assign location = site.data.locations | where: "id", "newcastle" | first %}
+
+<!-- Hero Section -->
+<section id="hero" style="background-image: url('{{ '/assets/img/large/' | append: location.image_file | relative_url }}'); background-position: center center">
+  <div class="container text-center">
+    <h1><span>Nadon Thai</span> Newcastle</h1>
+    <h2>Authentic Thai Food in Newcastle City</h2>
+    <p class="hero-subtext">Enjoy fresh, traditional Thai dishes in a relaxed setting — perfect for dining out in Newcastle.</p>
+    <div class="btns">
+      <a href="{{ '/book-a-table-newcastle/' | relative_url }}" class="btn-book">Book a Table</a>
+      <a href="#menu" class="btn-menu">View Menu</a>
+      <a href="#takeaway" class="btn-menu">Order Takeaway</a>
+    </div>
+  </div>
+</section>
+
+<main id="main">
+  <!-- Intro Section -->
+  <section class="about" style="background-image: url('{{ '/assets/img/about-bg.jpg' | relative_url }}')">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-2 order-lg-1 content pt-4">
+          <h3>Welcome to Nadon Thai Newcastle</h3>
+          <p>
+            Nadon Thai Newcastle brings authentic Thai cuisine to the city, combining traditional recipes with fresh ingredients and friendly service.
+          </p>
+          <p>
+            Whether you're planning an evening out, a meal with friends or a quick takeaway, our Newcastle restaurant offers a welcoming space to enjoy real Thai food.
+          </p>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2">
+          <div class="about-img">
+            <picture>
+              <source srcset="{{ '/assets/img/large/' | append: location.image_file | relative_url }}" media="(min-width: 992px)">
+              <source srcset="{{ '/assets/img/medium/' | append: location.image_file | relative_url }}" media="(min-width: 768px)">
+              <img src="{{ '/assets/img/small/' | append: location.image_file | relative_url }}" alt="Nadon Thai Newcastle">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Experience -->
+  <section class="why-us section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Discover</h2>
+        <p>The Experience</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <h4 style="color: #cda45e; font-family: 'Poppins', sans-serif; margin-bottom: 15px;">At Nadon Thai Newcastle, we offer:</h4>
+          <ul class="food-list">
+            <li>Freshly prepared dishes made to order</li>
+            <li>A relaxed and comfortable dining environment</li>
+            <li>Friendly, attentive service</li>
+          </ul>
+        </div>
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+          <h4 style="color: #cda45e; font-family: 'Poppins', sans-serif; margin-bottom: 15px;">Ideal for:</h4>
+          <ul class="food-list">
+            <li>Evenings out in the city</li>
+            <li>Small groups and casual dining</li>
+            <li>Pre-theatre or weekend meals</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Menu -->
+  <section id="menu" class="our-food">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Taste</h2>
+        <p>Our Menu</p>
+      </div>
+
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <picture>
+            <source srcset="{{ '/assets/img/gallery/large/gallery-3.jpg' | relative_url }}" media="(min-width: 992px)">
+            <source srcset="{{ '/assets/img/gallery/medium/gallery-3.jpg' | relative_url }}" media="(min-width: 768px)">
+            <img src="{{ '/assets/img/gallery/small/gallery-3.jpg' | relative_url }}" alt="Thai cuisine" class="img-fluid food-img">
+          </picture>
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0">
+          <p>Our Newcastle menu features a wide range of authentic Thai dishes, including:</p>
+          <ul class="food-list">
+            <li>Pad Thai and noodle favourites</li>
+            <li>Traditional Thai curries</li>
+            <li>Stir-fried dishes and house specials</li>
+            <li>Vegetarian and vegan options</li>
+          </ul>
+          <div class="mt-4">
+            {% for menu in location.menus %}
+            {% if menu.primary %}
+            <a href="{{ menu.file | relative_url }}" target="_blank" class="btn-gold" style="margin: 5px;">{{ menu.name }}</a>
+            {% endif %}
+            {% endfor %}
+            <br>
+            <a href="{{ '/assets/menus/menu-gluten-free.pdf' | relative_url }}" target="_blank" class="btn-outline-gold" style="margin: 5px;">Gluten Free &amp; Vegan</a>
+            {% for menu in location.menus %}
+            {% unless menu.primary %}
+            <a href="{{ menu.file | relative_url }}" target="_blank" class="btn-outline-gold" style="margin: 5px;">{{ menu.name }}</a>
+            {% endunless %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Takeaway -->
+  <section id="takeaway" class="takeaway" style="background-image: url('{{ '/assets/img/events-bg.jpg' | relative_url }}')">
+    <div class="container text-center" data-aos="fade-up">
+      <div class="section-title">
+        <h2>At Home</h2>
+        <p>Takeaway in Newcastle</p>
+      </div>
+      <p class="takeaway-text">Enjoy Nadon Thai at home with our takeaway and collection service. Perfect for a relaxed night in without compromising on quality or flavour.</p>
+      <div class="takeaway-links">
+        <div class="takeaway-location">
+          {% for link in location.delivery_links %}
+          <a href="{{ link.url }}" target="_blank" class="btn-outline-gold">{{ link.name }}</a>
+          {% endfor %}
+          {% for menu in location.menus %}
+          {% if menu.name == "Take Away" %}
+          <a href="{{ menu.file | relative_url }}" target="_blank" class="btn-gold">Takeaway Menu</a>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location & Details -->
+  <section class="find-us section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Visit</h2>
+        <p>Location &amp; Details</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="find-us-card">
+            <h4>Address</h4>
+            <p>
+              {{ location.address.street }}<br>
+              {{ location.address.city }}<br>
+              {{ location.address.postcode }}
+            </p>
+            <p>
+              <strong>Opening Hours:</strong><br>
+              Lunch: {{ location.hours.lunch }}<br>
+              Dinner: {{ location.hours.dinner }}<br>
+              {{ location.hours.weekend_note }}
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="find-us-card">
+            <h4>Contact</h4>
+            <p>
+              <a href="tel:{{ location.phone_link }}">{{ location.phone }}</a><br>
+              <a href="mailto:{{ location.email }}">{{ location.email }}</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Reviews</h2>
+        <p>What Our Customers Say</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="testimonial-card">
+            <p>"Great Thai food in the city — always consistent."</p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="testimonial-card">
+            <p>"Perfect for a night out in Newcastle."</p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="testimonial-card">
+            <p>"Friendly staff and really tasty food."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="why-us section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Experience</h2>
+        <p>Why Choose Nadon Thai Newcastle</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="box">
+            <span>01</span>
+            <h4>Authentic Thai Cooking</h4>
+            <p>Prepared using traditional recipes and fresh ingredients.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="box">
+            <span>02</span>
+            <h4>Central Location</h4>
+            <p>Ideal for city dining and evenings out.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="box">
+            <span>03</span>
+            <h4>Relaxed Atmosphere</h4>
+            <p>Comfortable and welcoming setting.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta" style="background-image: url('{{ '/assets/img/about-bg.jpg' | relative_url }}')">
+    <div class="container text-center" data-aos="fade-up">
+      <h3>Planning a Meal in Newcastle?</h3>
+      <p>Book your table or order takeaway today.</p>
+      <div class="btns">
+        <a href="{{ '/book-a-table-newcastle/' | relative_url }}" class="btn-gold">Book a Table</a>
+        <a href="#menu" class="btn-outline-gold">View Menu</a>
+        <a href="tel:{{ location.phone_link }}" class="btn-outline-gold">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  {% include gallery.html %}
+</main>

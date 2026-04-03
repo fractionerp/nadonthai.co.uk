@@ -1,7 +1,254 @@
 ---
-layout: location
+layout: default
 title: Nadon Thai Morpeth - Authentic Thai Cuisine
-description: "Authentic Thai Cuisine in Morpeth, Northumberland"
-keywords: "thai food, morpeth, northumberland, nadon thai, thai cuisine"
+description: "Authentic Thai dining in the heart of Morpeth, Northumberland"
+keywords: "thai food, morpeth, northumberland, nadon thai, thai cuisine, thai restaurant morpeth"
 location_id: morpeth
+has_back_to_top: true
 ---
+{% assign location = site.data.locations | where: "id", "morpeth" | first %}
+
+<!-- Hero Section -->
+<section id="hero" style="background-image: url('{{ '/assets/img/large/' | append: location.image_file | relative_url }}')">
+  <div class="container text-center">
+    <h1><span>Nadon Thai</span> Morpeth</h1>
+    <h2>Authentic Thai Dining in the Heart of Morpeth</h2>
+    <p class="hero-subtext">Enjoy fresh, traditional Thai dishes in a relaxed and welcoming setting at Nadon Thai Morpeth.</p>
+    <div class="btns">
+      <a href="{{ '/book-a-table-morpeth/' | relative_url }}" class="btn-book">Book a Table</a>
+      <a href="#menu" class="btn-menu">View Menu</a>
+      <a href="#takeaway" class="btn-menu">Order Takeaway</a>
+    </div>
+  </div>
+</section>
+
+<main id="main">
+  <!-- Intro Section -->
+  <section class="about" style="background-image: url('{{ '/assets/img/about-bg.jpg' | relative_url }}')">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-2 order-lg-1 content pt-4">
+          <h3>Welcome to Nadon Thai Morpeth</h3>
+          <p>
+            Located in Morpeth, Nadon Thai offers authentic Thai cuisine prepared using fresh ingredients and traditional recipes.
+          </p>
+          <p>
+            Whether you're joining us for a relaxed meal, a special occasion or a takeaway, our Morpeth restaurant delivers the same quality and flavour that customers have enjoyed since 2010.
+          </p>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2">
+          <div class="about-img">
+            <picture>
+              <source srcset="{{ '/assets/img/large/' | append: location.image_file | relative_url }}" media="(min-width: 992px)">
+              <source srcset="{{ '/assets/img/medium/' | append: location.image_file | relative_url }}" media="(min-width: 768px)">
+              <img src="{{ '/assets/img/small/' | append: location.image_file | relative_url }}" alt="Nadon Thai Morpeth">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Experience -->
+  <section class="why-us section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Discover</h2>
+        <p>The Experience</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <h4 style="color: #cda45e; font-family: 'Poppins', sans-serif; margin-bottom: 15px;">At Nadon Thai Morpeth, we focus on:</h4>
+          <ul class="food-list">
+            <li>Freshly prepared dishes made to order</li>
+            <li>Friendly, attentive service</li>
+            <li>A comfortable and welcoming dining atmosphere</li>
+          </ul>
+        </div>
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+          <h4 style="color: #cda45e; font-family: 'Poppins', sans-serif; margin-bottom: 15px;">Perfect for:</h4>
+          <ul class="food-list">
+            <li>Evening dining</li>
+            <li>Small groups and couples</li>
+            <li>Casual meals and special occasions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Menu -->
+  <section id="menu" class="our-food">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Taste</h2>
+        <p>Our Menu</p>
+      </div>
+
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <picture>
+            <source srcset="{{ '/assets/img/gallery/large/gallery-2.jpg' | relative_url }}" media="(min-width: 992px)">
+            <source srcset="{{ '/assets/img/gallery/medium/gallery-2.jpg' | relative_url }}" media="(min-width: 768px)">
+            <img src="{{ '/assets/img/gallery/small/gallery-2.jpg' | relative_url }}" alt="Thai cuisine" class="img-fluid food-img">
+          </picture>
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0">
+          <p>Explore a wide range of authentic Thai dishes, including:</p>
+          <ul class="food-list">
+            <li>Classic Pad Thai</li>
+            <li>Aromatic green, red and massaman curries</li>
+            <li>Stir-fried dishes and noodle favourites</li>
+            <li>Vegetarian and vegan options</li>
+          </ul>
+          <div class="mt-4">
+            {% for menu in location.menus %}
+            {% if menu.primary %}
+            <a href="{{ menu.file | relative_url }}" target="_blank" class="btn-gold" style="margin: 5px;">{{ menu.name }}</a>
+            {% endif %}
+            {% endfor %}
+            <br>
+            <a href="{{ '/assets/menus/menu-gluten-free.pdf' | relative_url }}" target="_blank" class="btn-outline-gold" style="margin: 5px;">Gluten Free &amp; Vegan</a>
+            {% for menu in location.menus %}
+            {% unless menu.primary %}
+            <a href="{{ menu.file | relative_url }}" target="_blank" class="btn-outline-gold" style="margin: 5px;">{{ menu.name }}</a>
+            {% endunless %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Takeaway -->
+  <section id="takeaway" class="takeaway" style="background-image: url('{{ '/assets/img/events-bg.jpg' | relative_url }}')">
+    <div class="container text-center" data-aos="fade-up">
+      <div class="section-title">
+        <h2>At Home</h2>
+        <p>Takeaway in Morpeth</p>
+      </div>
+      <p class="takeaway-text">Prefer to enjoy Nadon Thai at home? We offer takeaway and collection from our Morpeth restaurant, with the same quality and flavour as dining in.</p>
+      {% for menu in location.menus %}
+      {% if menu.name == "Take Away" %}
+      <a href="{{ menu.file | relative_url }}" target="_blank" class="btn-gold">View Takeaway Menu</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Location & Details -->
+  <section class="find-us section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Visit</h2>
+        <p>Location &amp; Details</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="find-us-card">
+            <h4>Address</h4>
+            <p>
+              {{ location.address.street }}<br>
+              {{ location.address.city }}<br>
+              {{ location.address.postcode }}
+            </p>
+            <p>
+              <strong>Opening Hours:</strong><br>
+              Lunch: {{ location.hours.lunch }}<br>
+              Dinner: {{ location.hours.dinner }}<br>
+              {{ location.hours.weekend_note }}
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="find-us-card">
+            <h4>Contact</h4>
+            <p>
+              <a href="tel:{{ location.phone_link }}">{{ location.phone }}</a><br>
+              <a href="mailto:{{ location.email }}">{{ location.email }}</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Reviews</h2>
+        <p>What Our Customers Say</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="testimonial-card">
+            <p>"Great food and friendly service — always consistent."</p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="testimonial-card">
+            <p>"Best Thai food in Morpeth."</p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="testimonial-card">
+            <p>"Lovely atmosphere and authentic dishes."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="why-us section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Experience</h2>
+        <p>Why Choose Nadon Thai Morpeth</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="box">
+            <span>01</span>
+            <h4>Authentic Thai Cooking</h4>
+            <p>Prepared using traditional recipes and fresh ingredients.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="box">
+            <span>02</span>
+            <h4>Established Local Favourite</h4>
+            <p>Serving Morpeth since 2010.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="box">
+            <span>03</span>
+            <h4>Relaxed Dining Experience</h4>
+            <p>Comfortable setting for any occasion.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta" style="background-image: url('{{ '/assets/img/about-bg.jpg' | relative_url }}')">
+    <div class="container text-center" data-aos="fade-up">
+      <h3>Ready to Book Your Table?</h3>
+      <p>Join us at Nadon Thai Morpeth or order takeaway today.</p>
+      <div class="btns">
+        <a href="{{ '/book-a-table-morpeth/' | relative_url }}" class="btn-gold">Book a Table</a>
+        <a href="#menu" class="btn-outline-gold">View Menu</a>
+        <a href="tel:{{ location.phone_link }}" class="btn-outline-gold">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  {% include gallery.html %}
+</main>

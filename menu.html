@@ -1,40 +1,302 @@
 ---
 layout: default
-title: Menu
-description: "View our menu of authentic Thai dishes"
-has_menu_filter: true
+title: Our Menu
+description: "Authentic Thai food made fresh to order at Nadon Thai restaurants"
 has_back_to_top: true
 ---
 
 <main id="main">
   <section class="breadcrumbs">
     <div class="container">
-      <h2>Menu</h2>
+      <h2>Our Menu</h2>
     </div>
   </section>
 
-  <section id="menu" class="menu section-bg">
-    <div class="container">
-      <div class="text-center">
-        <ul id="menu-flters">
-          {% for category in site.data.menu.categories %}
-          <li data-filter="{{ category.id }}"{% if forloop.first %} class="filter-active"{% endif %}>{{ category.name }}</li>
-          {% endfor %}
-        </ul>
+  <!-- Intro -->
+  <section class="menu-intro">
+    <div class="container text-center" data-aos="fade-up">
+      <h3>Authentic Thai Food Made Fresh to Order</h3>
+      <p>At Nadon Thai, our menu brings together a wide range of traditional Thai dishes, prepared using fresh ingredients and authentic recipes.</p>
+      <p>From light starters to rich curries and stir-fries, every dish is designed to deliver balanced, vibrant flavours.</p>
+      <p class="menu-note"><em>Please note: menu items and pricing may vary slightly by location.</em></p>
+      <div class="menu-location-btns">
+        {% for location in site.data.locations %}
+        <a href="{{ '/' | append: location.slug | append: '/' | relative_url }}" class="btn-outline-gold">View {{ location.name }} Menu</a>
+        {% endfor %}
       </div>
-      
-      <div class="row menu-container">
-        {% for category in site.data.menu.categories %}
-        {% for item in category.items %}
-        <div class="col-lg-6 menu-item{% if forloop.parentloop.first %} show{% endif %}" data-category="{{ category.id }}">
-          <div class="menu-content">{{ item.name }}</div>
-          <div class="menu-ingredients">{{ item.description }}</div>
+    </div>
+  </section>
+
+  <!-- Starters -->
+  <section class="menu-section section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Begin</h2>
+        <p>Starters</p>
+      </div>
+      <p class="menu-section-desc">A selection of light and flavourful dishes to begin your meal.</p>
+      <div class="row">
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Spring Rolls (V)</div>
+          <div class="menu-ingredients">Crispy vegetable spring rolls served with sweet chilli sauce</div>
         </div>
-        {% endfor %}
-        {% endfor %}
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Chicken Satay</div>
+          <div class="menu-ingredients">Grilled marinated chicken skewers served with peanut sauce</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Thai Fish Cakes</div>
+          <div class="menu-ingredients">Spiced fish cakes served with cucumber relish</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Prawn Toast</div>
+          <div class="menu-ingredients">Crispy sesame prawn toast with dipping sauce</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Spare Ribs</div>
+          <div class="menu-ingredients">Marinated ribs with Thai herbs and spices</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Mixed Starter Platter</div>
+          <div class="menu-ingredients">A selection of popular starters (ideal for sharing)</div>
+        </div>
       </div>
     </div>
   </section>
 
-  {% include gallery.html %}
+  <!-- Soups -->
+  <section class="menu-section">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Warm</h2>
+        <p>Soups</p>
+      </div>
+      <p class="menu-section-desc">Traditional Thai soups with aromatic herbs and spices.</p>
+      <div class="row">
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Tom Yum Soup</div>
+          <div class="menu-ingredients">Hot and sour soup with lemongrass, lime and chilli</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Tom Kha Soup</div>
+          <div class="menu-ingredients">Coconut-based soup with galangal, mushrooms and fresh herbs</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Salads -->
+  <section class="menu-section section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Fresh</h2>
+        <p>Salads</p>
+      </div>
+      <p class="menu-section-desc">Fresh, vibrant Thai salads with bold flavours.</p>
+      <div class="row">
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Papaya Salad (Som Tum)</div>
+          <div class="menu-ingredients">Shredded green papaya with chilli, lime and fish sauce</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Larb</div>
+          <div class="menu-ingredients">Minced meat salad with herbs, lime and toasted rice</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Thai Beef Salad</div>
+          <div class="menu-ingredients">Grilled beef with fresh herbs, chilli and lime dressing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curries -->
+  <section class="menu-section">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Aromatic</h2>
+        <p>Curries</p>
+      </div>
+      <p class="menu-section-desc">Rich, aromatic curries made with traditional Thai pastes and coconut milk.</p>
+      <div class="row">
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Green Curry</div>
+          <div class="menu-ingredients">A fragrant and slightly spicy curry with fresh herbs</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Red Curry</div>
+          <div class="menu-ingredients">A rich and balanced curry with deep flavour</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Massaman Curry</div>
+          <div class="menu-ingredients">A mild, slightly sweet curry with potatoes and peanuts</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Panang Curry</div>
+          <div class="menu-ingredients">A thicker, richer curry with a hint of sweetness</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Jungle Curry</div>
+          <div class="menu-ingredients">A spicy, traditional curry without coconut milk</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stir-Fried Dishes -->
+  <section class="menu-section section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Sizzle</h2>
+        <p>Stir-Fried Dishes</p>
+      </div>
+      <p class="menu-section-desc">Classic Thai stir-fries cooked fresh to order.</p>
+      <div class="row">
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Pad Thai</div>
+          <div class="menu-ingredients">Stir-fried rice noodles with egg, beansprouts and peanuts</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Pad See Ew</div>
+          <div class="menu-ingredients">Wide rice noodles stir-fried with soy sauce and vegetables</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Cashew Nut Stir Fry</div>
+          <div class="menu-ingredients">Stir-fried with vegetables and roasted cashew nuts</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Sweet &amp; Sour</div>
+          <div class="menu-ingredients">A balanced sweet and tangy stir-fry</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Garlic &amp; Pepper Stir Fry</div>
+          <div class="menu-ingredients">Stir-fried with garlic, black pepper and fresh vegetables</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Chilli &amp; Basil Stir Fry</div>
+          <div class="menu-ingredients">A spicy dish with fresh chilli and Thai basil</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rice & Noodles -->
+  <section class="menu-section">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Sides</h2>
+        <p>Rice &amp; Noodles</p>
+      </div>
+      <p class="menu-section-desc">Essential dishes and sides.</p>
+      <div class="row">
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Egg Fried Rice</div>
+          <div class="menu-ingredients">Classic Thai-style fried rice</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Steamed Jasmine Rice</div>
+          <div class="menu-ingredients">Fragrant Thai jasmine rice</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Special Fried Rice</div>
+          <div class="menu-ingredients">Fried rice with mixed vegetables and protein</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Thai Noodle Dishes</div>
+          <div class="menu-ingredients">A variety of noodle-based dishes prepared fresh to order</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vegetarian & Vegan -->
+  <section class="menu-section section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Plant-Based</h2>
+        <p>Vegetarian &amp; Vegan</p>
+      </div>
+      <p class="menu-section-desc">A wide range of dishes can be prepared vegetarian or vegan. Options include:</p>
+      <div class="row">
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Vegetable Spring Rolls</div>
+          <div class="menu-ingredients">Crispy rolls with fresh vegetable filling</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Tofu Stir-Fries</div>
+          <div class="menu-ingredients">Prepared with your choice of sauce and fresh vegetables</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Vegetable Curries</div>
+          <div class="menu-ingredients">Traditional curries made with seasonal vegetables</div>
+        </div>
+      </div>
+      <p class="menu-note mt-3"><em>Please ask when ordering for available variations.</em></p>
+    </div>
+  </section>
+
+  <!-- Chef's Specials -->
+  <section class="menu-section">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>House Favourites</h2>
+        <p>Chef's Specials</p>
+      </div>
+      <p class="menu-section-desc">A selection of dishes inspired by traditional Thai cooking and house favourites.</p>
+      <p class="menu-note"><em>Menu items may vary by location.</em></p>
+    </div>
+  </section>
+
+  <!-- Desserts -->
+  <section class="menu-section section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Sweet</h2>
+        <p>Desserts</p>
+      </div>
+      <p class="menu-section-desc">Traditional and famous Thai desserts to finish your meal.</p>
+      <div class="row">
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Mango Sticky Rice</div>
+          <div class="menu-ingredients">Sweet sticky rice with fresh mango and coconut cream</div>
+        </div>
+        <div class="col-lg-6 menu-dish">
+          <div class="menu-content">Pandan Pancakes</div>
+          <div class="menu-ingredients">Fragrant pandan-flavoured pancakes with a sweet filling</div>
+        </div>
+      </div>
+      <p class="menu-note mt-3"><em>Selection may vary depending on location and availability.</em></p>
+    </div>
+  </section>
+
+  <!-- Drinks -->
+  <section class="menu-section">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Beverages</h2>
+        <p>Drinks</p>
+      </div>
+      <p class="menu-section-desc">A range of beverages to complement your meal.</p>
+      <ul class="food-list">
+        <li>Soft drinks</li>
+        <li>Juices</li>
+        <li>Tea and coffee</li>
+        <li>Thai Beers</li>
+        <li>Selected Wines</li>
+      </ul>
+      <p class="menu-note"><em>Alcoholic drinks available in restaurant — varies by location.</em></p>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta" style="background-image: url('{{ '/assets/img/about-bg.jpg' | relative_url }}')">
+    <div class="container text-center" data-aos="fade-up">
+      <h3>Ready to Enjoy Authentic Thai Food?</h3>
+      <p>Explore your local menu for full details or book a table today.</p>
+      <div class="btns">
+        <a href="{{ '/book-a-table/' | relative_url }}" class="btn-gold">Book a Table</a>
+        <a href="#" class="btn-outline-gold" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">View Local Menus</a>
+      </div>
+    </div>
+  </section>
 </main>
