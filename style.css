@@ -320,7 +320,7 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   padding: 5px 10px;
 }
-.mobile-book-btn {
+.navbar .mobile-book-btn {
   display: none;
 }
 
