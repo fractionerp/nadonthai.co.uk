@@ -6,7 +6,7 @@
       <ul>
         <li><a class="nav-link{% if page.url == '/' or page.url == '/index.html' %} active{% endif %}" href="{{ '/' | relative_url }}">Home</a></li>
         <li><a class="nav-link{% if page.url contains 'menu' %} active{% endif %}" href="{{ '/menu/' | relative_url }}">Menu</a></li>
-        <li><a class="nav-link{% if page.url contains 'gift-vouchers' %} active{% endif %}" href="{{ '/gift-vouchers/' | relative_url }}">Gift Vouchers</a></li>
+        <li><a class="nav-link" href="https://app.squareup.com/gift/ML39MXXEDZ8Y1/order" target="_blank" rel="noopener">Gift Vouchers</a></li>
         <li><a class="nav-link{% if page.url contains 'gallery' %} active{% endif %}" href="{{ '/gallery/' | relative_url }}">Gallery</a></li>
         {% for location in site.data.locations %}
         <li><a href="{{ '/' | relative_url }}{{ location.slug }}/"{% if page.location_id == location.id %} class="active"{% endif %}>{{ location.name }}</a></li>
