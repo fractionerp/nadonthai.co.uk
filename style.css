@@ -1589,6 +1589,55 @@ section {
 }
 
 /*--------------------------------------------------------------
+# Lunchbox CTA
+--------------------------------------------------------------*/
+.lunchbox-cta {
+  background: #0f0e0c;
+  padding: 44px 0;
+}
+.lunchbox-cta-img {
+  display: block;
+  border: 4px solid rgba(205, 164, 94, 0.35);
+  overflow: hidden;
+  background: #1a1814;
+  text-align: center;
+}
+.lunchbox-cta-img img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 520px;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+.lunchbox-cta-img:hover img {
+  transform: scale(1.03);
+}
+.lunchbox-cta .section-title {
+  padding-bottom: 12px;
+}
+.lunchbox-cta-text {
+  color: #ccc;
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 640px;
+  margin-bottom: 22px;
+}
+.lunchbox-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+@media (max-width: 768px) {
+  .lunchbox-cta {
+    padding: 34px 0;
+  }
+  .lunchbox-cta .section-title p {
+    font-size: 30px;
+  }
+}
+
+/*--------------------------------------------------------------
 # Shared Button Styles
 --------------------------------------------------------------*/
 .btn-gold {

@@ -29,6 +29,9 @@
     - name: "Take Away"
       file: "assets/menus/menu-morpeth-takeaway.pdf"
       primary: true
+    - name: "Lunchbox Menu"
+      file: "assets/menus/menu-lunchbox.jpg"
+      primary: true
     - name: "Childrens"
       file: "assets/menus/menu-childrens.pdf"
       primary: true
@@ -76,6 +79,9 @@
     - name: "Take Away"
       file: "assets/menus/menu-newcastle-takeaway.pdf"
       primary: true
+    - name: "Lunchbox Menu"
+      file: "assets/menus/menu-lunchbox.jpg"
+      primary: true
     - name: "Childrens"
       file: "assets/menus/menu-childrens.pdf"
       primary: true
@@ -122,6 +128,9 @@
       primary: true
     - name: "Take Away"
       file: "assets/menus/menu-durham-takeaway.pdf"
+      primary: true
+    - name: "Lunchbox Menu"
+      file: "assets/menus/menu-lunchbox.jpg"
       primary: true
     - name: "Childrens"
       file: "assets/menus/menu-childrens.pdf"
