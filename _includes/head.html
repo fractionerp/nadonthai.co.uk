@@ -93,7 +93,7 @@ body{font-family:"Open Sans",sans-serif;background:#0c0b09;color:#fff;margin:0}
 </noscript>
 
 <!-- Main CSS -->
-<link href="{{ '/style.css' | relative_url }}" rel="stylesheet">
+<link href="{{ '/style.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}" rel="stylesheet">
 
 <!-- Structured Data for Restaurant -->
 <script type="application/ld+json">
