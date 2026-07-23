@@ -4,6 +4,29 @@
 <script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
 
+{% if page.has_special_offers_form %}
+<script>
+window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+window.LOCALE = 'en';
+window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = 'Please enter a valid email address.';
+window.REQUIRED_ERROR_MESSAGE = 'Please enter your email address.';
+window.GENERIC_INVALID_MESSAGE = 'Please check the information provided and try again.';
+window.INVALID_NUMBER = 'Please check the information provided and try again.';
+window.INVALID_DATE = 'Please enter a valid date.';
+window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least one option.';
+window.translation = {
+  common: {
+    selectedList: '{quantity} list selected',
+    selectedLists: '{quantity} lists selected',
+    selectedOption: '{quantity} selected',
+    selectedOptions: '{quantity} selected'
+  }
+};
+window.AUTOHIDE = false;
+</script>
+<script src="https://sibforms.com/forms/end-form/build/main.js" defer></script>
+{% endif %}
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize AOS (Animate on Scroll)
