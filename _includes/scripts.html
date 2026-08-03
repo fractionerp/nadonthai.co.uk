@@ -29,6 +29,54 @@ window.AUTOHIDE = false;
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Newcastle Restaurant Week popup (3-9 August 2026)
+  const campaignPopup = document.querySelector('#newcastle-restaurant-week-popup');
+  if (campaignPopup) {
+    const storageKey = 'newcastle-restaurant-week-2026-dismissed';
+    const campaignEnds = new Date('2026-08-10T00:00:00+01:00');
+    let wasDismissed = false;
+
+    try {
+      wasDismissed = sessionStorage.getItem(storageKey) === 'true';
+    } catch (error) {
+      // Continue showing the promotion if browser storage is unavailable.
+    }
+
+    if (!wasDismissed && new Date() < campaignEnds) {
+      const closeButton = campaignPopup.querySelector('.campaign-popup__close');
+      const dismissPopup = function() {
+        campaignPopup.hidden = true;
+        document.body.classList.remove('campaign-popup-open');
+
+        try {
+          sessionStorage.setItem(storageKey, 'true');
+        } catch (error) {
+          // The close control should still work when storage is unavailable.
+        }
+      };
+
+      campaignPopup.hidden = false;
+      document.body.classList.add('campaign-popup-open');
+      closeButton.focus();
+
+      campaignPopup.querySelectorAll('[data-popup-dismiss], [data-popup-book]').forEach(function(control) {
+        control.addEventListener('click', dismissPopup);
+      });
+
+      campaignPopup.addEventListener('click', function(event) {
+        if (event.target === campaignPopup) {
+          dismissPopup();
+        }
+      });
+
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && !campaignPopup.hidden) {
+          dismissPopup();
+        }
+      });
+    }
+  }
+
   // Initialize AOS (Animate on Scroll)
   if (typeof AOS !== 'undefined') {
     AOS.init({
