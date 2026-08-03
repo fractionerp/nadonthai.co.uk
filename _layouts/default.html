@@ -10,7 +10,9 @@
 
   {% include footer.html %}
 
+  {% unless page.url contains '/book-a-table' %}
   {% include newcastle-restaurant-week-popup.html %}
+  {% endunless %}
 
   {% if page.has_back_to_top %}
   <a href="#" class="back-to-top" aria-label="Back to top">
