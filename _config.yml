@@ -1,6 +1,6 @@
 # Site settings
 title: Nadon Thai Restaurants
-description: "Authentic Thai Restaurants in Morpeth, Newcastle and Durham"
+description: "Family-run authentic Thai restaurants in Morpeth, Newcastle and Durham, serving freshly prepared Thai food for dine-in and takeaway since 2010."
 tagline: "Modern Thai Cuisine"
 url: "https://nadonthai.co.uk"
 baseurl: ""
@@ -37,4 +37,4 @@ defaults:
       path: ""
     values:
       layout: "default"
-      image: "/assets/img/hero-bg.jpg"
+      image: "/assets/img/hero-bg.JPG"

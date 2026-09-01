@@ -9,7 +9,7 @@
     street: "12A Newgate Street"
     city: "Morpeth"
     postcode: "NE61 1BA"
-  description: "Located in Newgate Street, just next to town centre of the historic market town of Morpeth."
+  description: "Family-run Thai restaurant on Newgate Street in Morpeth, serving freshly prepared traditional dishes for lunch and dinner."
   image: "assets/img/morpeth.jpg"
   image_file: "morpeth.jpg"
   hours:
@@ -52,7 +52,7 @@
     street: "32-34 Mosley Street"
     city: "Newcastle Upon Tyne"
     postcode: "NE1 1DF"
-  description: "Close to the city centre and train station, our restaurant is located in a listed building."
+  description: "Family-run Thai restaurant on Mosley Street in Newcastle city centre, serving freshly prepared traditional dishes for lunch and dinner."
   image: "assets/img/newcastle.JPG"
   image_file: "newcastle.JPG"
   hours:
@@ -102,7 +102,7 @@
     street: "69/70 Crossgate"
     city: "Durham"
     postcode: "DH1 4PR"
-  description: "Just near the Framwellgate bridge of the historic city of Durham."
+  description: "Family-run Thai restaurant on Crossgate near Framwellgate Bridge in Durham, serving freshly prepared traditional dishes for lunch and dinner."
   image: "assets/img/durham.jpg"
   image_file: "durham.jpg"
   hours:

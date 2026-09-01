@@ -6,8 +6,7 @@ Allow: /
 # Sitemap location
 Sitemap: https://nadonthai.co.uk/sitemap.xml
 
-# Disallow non-content pages
-Disallow: /success-morpeth/
-Disallow: /success-newcastle/
-Disallow: /success-durham/
-Disallow: /error/
+# AI-readable site summary
+# https://nadonthai.co.uk/llms.txt
+
+# Confirmation and error pages use noindex metadata and are excluded from the sitemap.

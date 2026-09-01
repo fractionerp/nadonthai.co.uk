@@ -1,0 +1,53 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+# Nadon Thai Restaurants
+
+> {{ site.description }}
+
+Nadon Thai is a family-run group of three authentic Thai restaurants in North East England. The restaurants serve freshly prepared traditional Thai food for lunch and dinner, with dine-in, takeaway and collection options. Nadon Thai has operated since 2010.
+
+## Primary pages
+
+- [Official website]({{ '/' | absolute_url }}): Overview of Nadon Thai, its restaurants, food and services.
+- [Menu]({{ '/menu/' | absolute_url }}): Food menu overview and links to current location-specific menus.
+- [Book a table]({{ '/book-a-table/' | absolute_url }}): Choose a restaurant and make a reservation.
+- [Gift vouchers]({{ '/gift-vouchers/' | absolute_url }}): Information about Nadon Thai gift vouchers.
+- [Gallery]({{ '/gallery/' | absolute_url }}): Photos of Nadon Thai food and restaurants.
+- [Special offers]({{ '/special-offers/' | absolute_url }}): Email signup for restaurant offers.
+
+## Restaurant locations
+
+{% for location in site.data.locations %}
+### Nadon Thai {{ location.name }}
+
+{{ location.description }}
+
+- Address: {{ location.address.street }}, {{ location.address.city }}, {{ location.address.postcode }}, United Kingdom
+- Telephone: {{ location.phone }}
+- Email: {{ location.email }}
+- Lunch: {{ location.hours.lunch }}
+- Dinner: {{ location.hours.dinner }}
+- Weekend: {{ location.hours.weekend_note }}
+- [Location details]({{ '/' | append: location.slug | append: '/' | absolute_url }})
+- [Book {{ location.name }}]({{ '/book-a-table-' | append: location.id | append: '/' | absolute_url }})
+
+{% endfor %}
+## Food and services
+
+- Cuisine: authentic Thai food prepared from fresh ingredients and traditional recipes.
+- Dining: lunch and dinner at Morpeth, Newcastle and Durham.
+- Takeaway: takeaway and collection are available; ordering providers vary by location.
+- Menus: evening, lunch, happy hour, takeaway, lunchbox, children's, dessert, gluten-free and vegan, and allergen information are available on the website. Menu availability and prices may vary by restaurant.
+- Reservations: use the location-specific booking links above. Contact the restaurant directly for booking questions.
+- Gift vouchers: available online and redeemable at all Nadon Thai locations.
+
+## Official contact and social profiles
+
+- General email: {{ site.email }}
+- Facebook: {{ site.social.facebook }}
+- Instagram: {{ site.social.instagram }}
+
+For the latest availability, menu pricing, opening-hour exceptions and booking confirmation, use the official pages above or contact the relevant restaurant directly.
