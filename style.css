@@ -2,6 +2,44 @@ button {
   color: #cda45e;
 }
 
+section.christmas-banner {
+  padding: 24px 0;
+  background: #173b30;
+  border-bottom: 1px solid #cda45e;
+}
+
+.christmas-banner__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.christmas-banner h2 {
+  margin: 0 0 6px;
+  color: #f3d8a5;
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 600;
+}
+
+.christmas-banner p {
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+.christmas-banner .btn-gold {
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .christmas-banner__content {
+    flex-direction: column;
+    text-align: center;
+    gap: 14px;
+  }
+}
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
