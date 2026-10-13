@@ -1869,6 +1869,45 @@ section {
   margin: 4px;
 }
 
+.takeaway-location {
+  max-width: 100%;
+}
+
+.delivery-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  width: 280px;
+  max-width: 100%;
+  margin: 0 auto 14px;
+}
+
+.delivery-buttons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delivery-buttons .delivery-buttons__preferred {
+  grid-column: 1 / -1;
+  min-height: 58px;
+  padding: 14px 28px;
+  font-size: 16px;
+  color: #0c0b09;
+}
+
+.delivery-buttons .btn-outline-gold {
+  min-height: 44px;
+  padding: 6px 14px;
+  margin: 0;
+  font-size: 11px;
+}
+
+.delivery-buttons a:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
 /*--------------------------------------------------------------
 # Testimonial Cards
 --------------------------------------------------------------*/

@@ -64,12 +64,13 @@
     dinner: "17:30 - 22:00"
     weekend_note: "Open until 22:30 Friday and Saturday"
   delivery_links:
+    - name: "Just Eat"
+      url: "https://www.just-eat.co.uk/restaurants-nadon-thai---newcastle-spital-tongues/menu#pre-order"
+      preferred: true
     - name: "Deliveroo"
       url: "https://deliveroo.co.uk/menu/newcastle/newcastle-city-centre/nadon-thai-newcastle"
     - name: "Uber"
       url: "https://www.ubereats.com/gb/store/nadon-thai-newcastle/fpz3mTBlT068HZ4Z9o8PJA?diningMode=DELIVERY"
-    - name: "Just Eat"
-      url: "https://www.just-eat.co.uk/restaurants-nadon-thai---newcastle-spital-tongues/menu#pre-order"
   menus:
     - name: "Christmas Menu"
       file: "assets/menus/christmas-menu.pdf"
@@ -118,12 +119,13 @@
     dinner: "17:30 - 22:00"
     weekend_note: "Open until 22:30 Friday and Saturday"
   delivery_links:
+    - name: "Just Eat"
+      url: "https://www.just-eat.co.uk/restaurants-nadon-thai---durham-gilesgate/menu"
+      preferred: true
     - name: "Deliveroo"
       url: "https://deliveroo.co.uk/"
     - name: "Uber"
       url: "https://www.ubereats.com/"
-    - name: "Just Eat"
-      url: "https://www.just-eat.co.uk/restaurants-nadon-thai---durham-gilesgate/menu"
   menus:
     - name: "Christmas Menu"
       file: "assets/menus/christmas-menu.pdf"

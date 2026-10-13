@@ -1,0 +1,5 @@
+<div class="delivery-buttons">
+  {% for link in include.location.delivery_links %}
+  <a href="{{ link.url }}" target="_blank" rel="noopener" class="{% if link.preferred %}btn-gold delivery-buttons__preferred{% else %}btn-outline-gold{% endif %}">{{ link.name }}</a>
+  {% endfor %}
+</div>

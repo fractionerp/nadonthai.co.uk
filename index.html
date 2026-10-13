@@ -5,7 +5,7 @@ description: "Authentic Thai restaurants in Morpeth, Newcastle and Durham. Famil
 keywords: "thai restaurant, thai food, nadon thai, morpeth, newcastle, durham, north east, authentic thai, book a table, thai takeaway"
 has_back_to_top: true
 has_special_offers_form: true
-last_modified_at: 2026-09-27
+last_modified_at: 2026-10-13
 ---
 
 <section class="christmas-banner" aria-labelledby="christmas-banner-title">
@@ -200,9 +200,7 @@ last_modified_at: 2026-09-27
         {% if location.delivery_links %}
         <div class="takeaway-location">
           <h4>{{ location.name }}</h4>
-          {% for link in location.delivery_links %}
-          <a href="{{ link.url }}" target="_blank" class="btn-outline-gold">{{ link.name }}</a>
-          {% endfor %}
+          {% include delivery-buttons.html location=location %}
         </div>
         {% endif %}
         {% endfor %}

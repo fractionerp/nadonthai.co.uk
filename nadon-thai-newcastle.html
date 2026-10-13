@@ -5,7 +5,7 @@ description: "Visit Nadon Thai Newcastle on Mosley Street for freshly prepared a
 keywords: "thai food, newcastle, newcastle upon tyne, nadon thai, thai cuisine, thai restaurant newcastle"
 location_id: newcastle
 has_back_to_top: true
-last_modified_at: 2026-09-27
+last_modified_at: 2026-10-13
 ---
 {% assign location = site.data.locations | where: "id", "newcastle" | first %}
 
@@ -132,9 +132,7 @@ last_modified_at: 2026-09-27
       <p class="takeaway-text">Enjoy Nadon Thai at home with our takeaway and collection service. Perfect for a relaxed night in without compromising on quality or flavour.</p>
       <div class="takeaway-links">
         <div class="takeaway-location">
-          {% for link in location.delivery_links %}
-          <a href="{{ link.url }}" target="_blank" class="btn-outline-gold">{{ link.name }}</a>
-          {% endfor %}
+          {% include delivery-buttons.html location=location %}
           {% for menu in location.menus %}
           {% if menu.name == "Take Away" %}
           <a href="{{ menu.file | relative_url }}" target="_blank" class="btn-gold">Takeaway Menu</a>
