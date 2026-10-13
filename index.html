@@ -50,7 +50,12 @@ last_modified_at: 2026-10-13
           <p class="lunchbox-cta-text">A new takeaway lunchbox offering made for one: fresh Thai favourites packed for a quick, satisfying meal at home, at work or on the go.</p>
           <div class="lunchbox-cta-actions">
             <a href="{{ '/assets/menus/menu-lunchbox.jpg' | relative_url }}" target="_blank" class="btn-gold">View Lunchbox Menu</a>
-            <a href="#takeaway" class="btn-outline-gold">Order Takeaway</a>
+            {% for location in site.data.locations %}
+            {% if location.id == 'newcastle' or location.id == 'durham' %}
+            {% assign just_eat = location.delivery_links | where: 'name', 'Just Eat' | first %}
+            <a href="{{ just_eat.url }}" target="_blank" rel="noopener" class="btn-outline-gold">Order on Just Eat – {{ location.name }}</a>
+            {% endif %}
+            {% endfor %}
           </div>
         </div>
       </div>
