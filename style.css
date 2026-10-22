@@ -1163,6 +1163,12 @@ section {
 /*--------------------------------------------------------------
 # Book A Table
 --------------------------------------------------------------*/
+.booking-widget-centered {
+  width: 100%;
+  max-width: 500px;
+  margin-inline: auto;
+}
+
 .book-a-table {
   color: var(--bs-light);
 }
