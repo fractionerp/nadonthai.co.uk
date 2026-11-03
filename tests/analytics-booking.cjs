@@ -63,17 +63,6 @@ const assert = require('assert/strict');
     return route.abort();
   });
   const page = await context.newPage();
-  const calls = [];
-  await page.exposeFunction('captureGtag', args => calls.push(args));
-  await page.addInitScript(() => {
-    document.addEventListener('DOMContentLoaded', () => {
-      const send = window.gtag;
-      window.gtag = function () {
-        window.captureGtag(Array.from(arguments));
-        return send.apply(this, arguments);
-      };
-    });
-  });
   page.on('popup', popup => popup.close());
   page.on('pageerror', error => errors.push(error.message));
   const visit = route => page.goto(origin + route, { waitUntil: 'networkidle' });
@@ -105,14 +94,18 @@ const assert = require('assert/strict');
     await visit('/nadon-thai-' + site + '/?analytics_debug=1');
     const destination = '/book-a-table-' + site + '/';
     await Promise.all([page.waitForURL(origin + destination), page.locator('#hero a[href="' + destination + '"]').click()]);
-    const clicked = calls.filter(call => call[0] === 'event' && call[1] === 'book_click' && call[2].site === site);
+    await page.waitForLoadState('networkidle');
+    const clicked = (await queue()).filter(call => call[0] === 'event' && call[1] === 'book_click' && call[2].site === site);
     assert.equal(clicked.length, 1);
-    assert.deepEqual(clicked[0][2], { site, link_location: 'hero', page_path: '/nadon-thai-' + site + '/' });
+    const { site: clickedSite, link_location, page_path } = clicked[0][2];
+    assert.deepEqual({ site: clickedSite, link_location, page_path }, { site, link_location: 'hero', page_path: '/nadon-thai-' + site + '/' });
+    await waitEvent(event => event.en === 'book_click' && event['ep.site'] === site);
+    assert.equal(events.filter(event => event.en === 'book_click' && event['ep.site'] === site).length, 1);
     await page.waitForLoadState('networkidle');
     assert.deepEqual((await queue()).filter(event => event[1] === 'booking_page_view'), [['event', 'booking_page_view', { site }]]);
     await waitEvent(event => event.en === 'booking_page_view' && event['ep.site'] === site && isDebug(event));
   }
-  console.log('Real hero navigation: one book_click per click with correct parameters; all three booking-page events received');
+  console.log('Real hero navigation: booking click payloads survive immediate navigation; all three booking-page events received');
 
   await visit('/?analytics_debug=1');
   await page.evaluate(() => {

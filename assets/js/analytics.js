@@ -4,6 +4,7 @@
   const measurementId = document.currentScript.dataset.measurementId;
   const baseurl = document.currentScript.dataset.baseurl || '';
   const storageKey = 'nadon-analytics-consent-v1';
+  const pendingClickKey = 'nadon-pending-booking-click';
   const preferenceLifetime = 180 * 24 * 60 * 60 * 1000;
   const banner = document.getElementById('analytics-consent');
   const settingsButtons = document.querySelectorAll('[data-analytics-settings]');
@@ -70,6 +71,7 @@
     }
     if (debugMode) config.debug_mode = true;
     window.gtag('config', measurementId, config);
+    recoverBookingClick();
     trackBookingPage();
     const tag = document.createElement('script');
     tag.async = true;
@@ -79,6 +81,7 @@
 
   function disableAnalytics() {
     analyticsAllowed = false;
+    try { sessionStorage.removeItem(pendingClickKey); } catch (error) { /* Storage unavailable. */ }
     window['ga-disable-' + measurementId] = true;
     window.gtag('consent', 'update', { analytics_storage: 'denied' });
     clearAnalyticsCookies();
@@ -97,6 +100,24 @@
     }
   }
 
+  function sendBookingClick(parameters) {
+    window.gtag('event', 'book_click', parameters);
+  }
+
+  function recoverBookingClick() {
+    // Immediate navigation can discard Google's asynchronous click queue.
+    // Preserve the click on its destination without delaying navigation.
+    try {
+      const pending = JSON.parse(sessionStorage.getItem(pendingClickKey));
+      sessionStorage.removeItem(pendingClickKey);
+      if (pending && pending.expires > Date.now() && pending.destination === location.pathname) {
+        sendBookingClick(Object.assign({}, pending.parameters, {
+          page_location: location.origin + pending.parameters.page_path
+        }));
+      }
+    } catch (error) { /* The normal click event still works without session storage. */ }
+  }
+
   // One delegated listener covers existing and dynamically inserted links.
   document.addEventListener('click', function (event) {
     if (!analyticsAllowed) return;
@@ -112,11 +133,29 @@
     });
     const linkLocation = link.closest('header, #header') ? 'header' :
       link.closest('#hero') ? 'hero' : buttonClass || 'site_page';
-    window.gtag('event', 'book_click', {
+    const parameters = {
       site: booking[1],
       link_location: linkLocation,
       page_path: location.pathname
-    });
+    };
+    let handedOff = false;
+    const sameDocument = url.pathname === location.pathname && url.search === location.search;
+    if (!sameDocument && (!link.target || link.target === '_self') && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey && !link.hasAttribute('download')) {
+      try {
+        sessionStorage.setItem(pendingClickKey, JSON.stringify({
+          parameters: parameters, destination: url.pathname, expires: Date.now() + 15000
+        }));
+        handedOff = true;
+      } catch (error) { /* Continue with the normal event if storage is unavailable. */ }
+      queueMicrotask(function () {
+        if (handedOff && event.defaultPrevented) {
+          try { sessionStorage.removeItem(pendingClickKey); } catch (error) { /* Storage unavailable. */ }
+          sendBookingClick(parameters);
+        }
+      });
+    }
+    // A same-tab navigation hands off once; other clicks send on this page.
+    if (!handedOff) sendBookingClick(parameters);
   }, { capture: true, passive: true });
 
   function showSettings() {
