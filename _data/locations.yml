@@ -9,6 +9,15 @@
     street: "12A Newgate Street"
     city: "Morpeth"
     postcode: "NE61 1BA"
+    region: "Northumberland"
+  booking_slug: book-a-table-morpeth
+  place_id: "ChIJ_8lI-P4KfkgR3VjachrN_k8"
+  geo:
+    lat: 55.167996
+    lng: -1.6906044
+  same_as:
+    - "https://www.instagram.com/nadonthai/"
+    - "https://www.tripadvisor.co.uk/Restaurant_Review-g504049-d1911053-Reviews-Nadon_Thai-Morpeth_Northumberland_England.html"
   description: "Family-run Thai restaurant on Newgate Street in Morpeth, serving freshly prepared traditional dishes for lunch and dinner."
   image: "assets/img/morpeth.jpg"
   image_file: "morpeth.jpg"
@@ -54,8 +63,18 @@
   phone_link: "01912619768"
   address:
     street: "32-34 Mosley Street"
-    city: "Newcastle Upon Tyne"
+    city: "Newcastle upon Tyne"
     postcode: "NE1 1DF"
+    region: "Tyne and Wear"
+  booking_slug: book-a-table-newcastle
+  place_id: "ChIJEyJXQ7ZwfkgRjhZbslDpU4A"
+  geo:
+    lat: 54.9705405
+    lng: -1.6110916
+  same_as:
+    - "https://www.facebook.com/people/NadonThai-Newcastle/100063745951218/"
+    - "https://www.instagram.com/nadonthai/"
+    - "https://www.tripadvisor.co.uk/Restaurant_Review-g186394-d9709089-Reviews-Nadon_Thai_Newcastle-Newcastle_upon_Tyne_Tyne_and_Wear_England.html"
   description: "Family-run Thai restaurant on Mosley Street in Newcastle city centre, serving freshly prepared traditional dishes for lunch and dinner."
   image: "assets/img/newcastle.JPG"
   image_file: "newcastle.JPG"
@@ -108,9 +127,19 @@
   phone: "0191 374 1157"
   phone_link: "01913741157"
   address:
-    street: "69/70 Crossgate"
+    street: "69-70 Crossgate"
     city: "Durham"
     postcode: "DH1 4PR"
+    region: "County Durham"
+  booking_slug: book-a-table-durham
+  place_id: "ChIJWS23uYp9fkgRQ1ysYm7eNfY"
+  geo:
+    lat: 54.776219
+    lng: -1.579629
+  same_as:
+    - "https://www.facebook.com/Nadonthaidurham/"
+    - "https://www.instagram.com/nadonthai/"
+    - "https://www.tripadvisor.co.uk/Restaurant_Review-g190832-d6731804-Reviews-Nadon_Thai_Durham-Durham_County_Durham_England.html"
   description: "Family-run Thai restaurant on Crossgate near Framwellgate Bridge in Durham, serving freshly prepared traditional dishes for lunch and dinner."
   image: "assets/img/durham.jpg"
   image_file: "durham.jpg"

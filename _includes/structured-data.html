@@ -1,0 +1,107 @@
+{% if page.url == '/' or page.url == '/index.html' %}
+<!-- Brand and website: individual restaurants are described on their branch pages. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ '/' | absolute_url }}#organization",
+      "name": {{ site.title | jsonify }},
+      "alternateName": "Nadon Thai",
+      "url": "{{ '/' | absolute_url }}",
+      "logo": { "@type": "ImageObject", "url": "{{ '/assets/img/nadonlogo.png' | absolute_url }}" },
+      "image": "{{ '/assets/img/hero-bg.JPG' | absolute_url }}",
+      "description": {{ site.description | jsonify }},
+      "email": {{ site.email | jsonify }},
+      "foundingDate": "2010",
+      "sameAs": [{{ site.social.instagram | jsonify }}],
+      "subOrganization": [
+        {% for location in site.data.locations %}
+        {% assign location_path = '/' | append: location.slug | append: '/' %}
+        { "@id": "{{ location_path | absolute_url }}#restaurant" }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ '/' | absolute_url }}#website",
+      "url": "{{ '/' | absolute_url }}",
+      "name": {{ site.title | jsonify }},
+      "inLanguage": "en-GB",
+      "publisher": { "@id": "{{ '/' | absolute_url }}#organization" }
+    }
+  ]
+}
+</script>
+{% endif %}
+
+{% if page.location_id %}
+{% assign loc = site.data.locations | where: 'id', page.location_id | first %}
+{% assign loc_path = '/' | append: loc.slug | append: '/' %}
+{% if page.url == loc_path %}
+{% assign preferred_order = loc.delivery_links | where: 'preferred', true | first %}
+<!-- One complete Restaurant entity on its own branch page only. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "@id": "{{ loc_path | absolute_url }}#restaurant",
+  "name": {{ 'Nadon Thai - ' | append: loc.name | jsonify }},
+  "description": {{ loc.description | jsonify }},
+  "url": "{{ loc_path | absolute_url }}",
+  "image": "{{ '/assets/img/' | append: loc.image_file | absolute_url }}",
+  "logo": "{{ '/assets/img/nadonlogo.png' | absolute_url }}",
+  "telephone": "+44{{ loc.phone_link | remove_first: '0' }}",
+  "email": {{ loc.email | jsonify }},
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ loc.address.street | jsonify }},
+    "addressLocality": {{ loc.address.city | jsonify }},
+    "addressRegion": {{ loc.address.region | jsonify }},
+    "postalCode": {{ loc.address.postcode | jsonify }},
+    "addressCountry": "GB"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": {{ loc.geo.lat | jsonify }}, "longitude": {{ loc.geo.lng | jsonify }} },
+  "hasMap": "https://www.google.com/maps/place/?q=place_id:{{ loc.place_id }}",
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "12:00", "closes": "14:30" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "17:30", "closes": "22:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "17:30", "closes": "22:30" }
+  ],
+  "servesCuisine": "Thai",
+  "priceRange": "££",
+  "menu": "{{ '/menu/' | absolute_url }}",
+  "acceptsReservations": true,
+  "potentialAction": [
+    {
+      "@type": "ReserveAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "{{ '/' | append: loc.booking_slug | append: '/' | absolute_url }}",
+        "inLanguage": "en-GB",
+        "actionPlatform": ["https://schema.org/DesktopWebPlatform", "https://schema.org/MobileWebPlatform"]
+      },
+      "result": { "@type": "FoodEstablishmentReservation", "name": {{ 'Book a table at Nadon Thai - ' | append: loc.name | jsonify }} }
+    }{% if preferred_order %},
+    {
+      "@type": "OrderAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": {{ preferred_order.url | jsonify }},
+        "inLanguage": "en-GB",
+        "actionPlatform": ["https://schema.org/DesktopWebPlatform", "https://schema.org/MobileWebPlatform"]
+      }
+    }{% endif %}
+  ],
+  "sameAs": {{ loc.same_as | jsonify }},
+  "parentOrganization": {
+    "@type": "Organization",
+    "@id": "{{ '/' | absolute_url }}#organization",
+    "name": {{ site.title | jsonify }},
+    "url": "{{ '/' | absolute_url }}"
+  }
+}
+</script>
+{% endif %}
+{% endif %}
