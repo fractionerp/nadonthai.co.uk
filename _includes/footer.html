@@ -46,6 +46,9 @@
     <div class="container text-center">
       <p>&copy; {{ site.title }}. All Rights Reserved.</p>
       <p><a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a></p>
+      {% if site.google_analytics %}
+      <p><button type="button" class="analytics-settings" data-analytics-settings hidden>Analytics settings</button></p>
+      {% endif %}
     </div>
   </div>
 </footer>

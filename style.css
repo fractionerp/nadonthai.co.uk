@@ -2,6 +2,91 @@ button {
   color: #cda45e;
 }
 
+.analytics-consent[hidden],
+.analytics-settings[hidden] {
+  display: none;
+}
+
+.analytics-consent {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px max(20px, calc((100vw - 1200px) / 2));
+  max-height: 80vh;
+  overflow-y: auto;
+  background: #1a1814;
+  color: #fff;
+  border-top: 2px solid #cda45e;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.analytics-consent__copy {
+  flex: 1;
+}
+
+.analytics-consent h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.analytics-consent p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.analytics-consent a,
+.analytics-settings {
+  text-decoration: underline;
+}
+
+.analytics-settings {
+  border: 0;
+  background: none;
+  padding: 4px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.analytics-consent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.analytics-consent__actions button {
+  min-height: 44px;
+  padding: 10px 16px;
+  background: transparent;
+  color: #fff;
+  border: 2px solid #cda45e;
+  border-radius: 30px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.analytics-consent__actions button:hover {
+  background: #cda45e;
+  color: #0c0b09;
+}
+
+.analytics-consent button:focus-visible,
+.analytics-settings:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .analytics-consent {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+}
+
 section.christmas-banner {
   padding: 24px 0;
   background: #173b30;

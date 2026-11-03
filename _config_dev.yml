@@ -1,3 +1,4 @@
 # Development overrides - use with: jekyll build --config _config.yml,_config_dev.yml
 url: "https://tenx.fraction.app"
 baseurl: "/nadonthai.co.uk"
+google_analytics: false
