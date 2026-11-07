@@ -9,6 +9,8 @@ sitemap: false
 
 Nadon Thai is a family-run group of three authentic Thai restaurants in North East England. The restaurants serve freshly prepared traditional Thai food for lunch and dinner, with dine-in, takeaway and collection options. Nadon Thai has operated since 2010.
 
+Opening times are local UK time (Europe/London). Use the official location pages and linked menus for current details; prices, menu availability and holiday hours may change. Newcastle and Durham use resOS booking widgets. Morpeth uses a booking request form; submitting a request is not a confirmed reservation.
+
 ## Primary pages
 
 - [Official website]({{ '/' | absolute_url }}): Overview of Nadon Thai, its restaurants, food and services.
@@ -25,14 +27,22 @@ Nadon Thai is a family-run group of three authentic Thai restaurants in North Ea
 
 {{ location.description }}
 
-- Address: {{ location.address.street }}, {{ location.address.city }}, {{ location.address.postcode }}, United Kingdom
+- Address: {{ location.address.street }}, {{ location.address.city }}, {{ location.address.region }}, {{ location.address.postcode }}, United Kingdom
 - Telephone: {{ location.phone }}
 - Email: {{ location.email }}
 - Lunch: {{ location.hours.lunch }}
 - Dinner: {{ location.hours.dinner }}
 - Weekend: {{ location.hours.weekend_note }}
 - [Location details]({{ '/' | append: location.slug | append: '/' | absolute_url }})
-- [Book {{ location.name }}]({{ '/book-a-table-' | append: location.id | append: '/' | absolute_url }})
+- [Book {{ location.name }}]({{ '/' | append: location.booking_slug | append: '/' | absolute_url }}): {% if location.id == 'morpeth' %}Submit a booking request and wait for restaurant confirmation.{% else %}Reserve through this restaurant's resOS widget.{% endif %}
+- [Google Maps location](https://www.google.com/maps/place/?q=place_id:{{ location.place_id }}): Map listing for this branch.
+{% assign preferred_delivery = location.delivery_links | where: 'preferred', true | first %}
+{% if preferred_delivery %}
+- [Order {{ location.name }} delivery on {{ preferred_delivery.name }}]({{ preferred_delivery.url }}): Preferred delivery partner for this restaurant.
+{% endif %}
+{% for menu in location.menus %}
+- [{{ location.name }} {{ menu.name }}]({{ menu.file | absolute_url }}): {% if menu.seasonal %}Seasonal menu; check the document for its availability dates.{% else %}Restaurant menu or food information.{% endif %}
+{% endfor %}
 
 {% endfor %}
 ## Food and services
@@ -51,3 +61,11 @@ Nadon Thai is a family-run group of three authentic Thai restaurants in North Ea
 - Instagram: {{ site.social.instagram }}
 
 For the latest availability, menu pricing, opening-hour exceptions and booking confirmation, use the official pages above or contact the relevant restaurant directly.
+
+## Optional
+
+- [Sitemap]({{ '/sitemap.xml' | absolute_url }}): Complete list of indexable website pages.
+- [Privacy policy]({{ '/privacy-policy/' | absolute_url }}): Personal information, analytics consent and cookies.
+- [Sustainability]({{ '/sustainability/' | absolute_url }}): Environmental commitments.
+- [Charities and donations]({{ '/charity/' | absolute_url }}): Community and charity support.
+- [Join our team]({{ '/join-our-team/' | absolute_url }}): Recruitment contact details.

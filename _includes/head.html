@@ -18,7 +18,7 @@
 {% assign canonical_url = page.url | replace: 'index.html', '' %}
 <link rel="canonical" href="{{ canonical_url | absolute_url }}">
 {% endif %}
-<link rel="alternate" type="text/plain" href="{{ '/llms.txt' | absolute_url }}" title="AI-readable site summary">
+<link rel="describedby" type="text/plain" href="{{ '/llms.txt' | absolute_url }}" title="AI-readable site summary">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
