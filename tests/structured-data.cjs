@@ -55,6 +55,14 @@ for (const filename of files(root)) {
   assert.match(restaurant.hasMap, /^https:\/\/www.google.com\/maps\/place\/\?q=place_id:ChIJ/);
   assert.equal(restaurant.menu, base + 'menu/');
   assert.equal(restaurant.openingHoursSpecification.length, 3);
+  const lunch = restaurant.openingHoursSpecification[0];
+  assert.equal(lunch.opens, '12:00');
+  assert.equal(lunch.closes, '14:30');
+  for (const day of ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']) {
+    const dinner = restaurant.openingHoursSpecification.filter(hours => hours.dayOfWeek.includes(day) && hours.opens === '17:00');
+    assert.equal(dinner.length, 1, site + ' needs exactly one dinner period for ' + day);
+    assert.equal(dinner[0].closes, ['Friday', 'Saturday'].includes(day) ? '22:00' : '21:30');
+  }
   const reservation = restaurant.potentialAction.find(action => action['@type'] === 'ReserveAction');
   assert.equal(reservation.target.urlTemplate, base + 'book-a-table-' + site + '/');
   const order = restaurant.potentialAction.filter(action => action['@type'] === 'OrderAction');
