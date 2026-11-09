@@ -59,7 +59,7 @@ layout: default
               
               <div class="mb-3">
                 <label for="time" class="form-label">Time</label>
-                <select class="form-select" id="time" name="timebooking" required>
+                <select class="form-select" id="time" name="timebooking" aria-describedby="booking-time-help" required>
                   <option value="">---</option>
                   <option value="12:00">12:00</option>
                   <option value="12:15">12:15</option>
@@ -85,11 +85,10 @@ layout: default
                   <option value="20:00">20:00</option>
                   <option value="20:15">20:15</option>
                   <option value="20:30">20:30</option>
-                  <option value="20:45">20:45</option>
-                  <option value="21:00">21:00</option>
-                  <option value="21:15">21:15</option>
-                  <option value="21:30">21:30 (Fri & Sat only)</option>
+                  <option value="20:45" data-weekend-only hidden disabled>20:45 (Fri &amp; Sat only)</option>
+                  <option value="21:00" data-weekend-only hidden disabled>21:00 (Fri &amp; Sat only)</option>
                 </select>
+                <p id="booking-time-help" class="form-text text-light">Choose a date to see available times. Last dinner booking: 20:30 Sunday–Thursday, or 21:00 Friday and Saturday.</p>
               </div>
             </div>
             
@@ -106,3 +105,27 @@ layout: default
     </div>
   </section>
 </main>
+
+<script>
+(function () {
+  const dateInput = document.getElementById('date');
+  const timeInput = document.getElementById('time');
+  const weekendOptions = timeInput.querySelectorAll('[data-weekend-only]');
+
+  function updateBookingTimes() {
+    const selectedDate = dateInput.valueAsDate;
+    const day = selectedDate ? selectedDate.getUTCDay() : null;
+    const lateBookingsAllowed = day === 5 || day === 6;
+    weekendOptions.forEach(function (option) {
+      if (!lateBookingsAllowed && option.selected) timeInput.value = '';
+      option.disabled = !lateBookingsAllowed;
+      option.hidden = !lateBookingsAllowed;
+    });
+  }
+
+  dateInput.addEventListener('input', updateBookingTimes);
+  dateInput.addEventListener('change', updateBookingTimes);
+  window.addEventListener('pageshow', updateBookingTimes);
+  updateBookingTimes();
+}());
+</script>
