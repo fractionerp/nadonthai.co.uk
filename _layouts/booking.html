@@ -57,39 +57,37 @@ layout: default
                 <input type="date" class="form-control" id="date" name="date" required>
               </div>
               
-              <div class="mb-3">
-                <label for="time" class="form-label">Time</label>
-                <select class="form-select" id="time" name="timebooking" required>
-                  <option value="">---</option>
-                  <option value="12:00">12:00</option>
-                  <option value="12:15">12:15</option>
-                  <option value="12:30">12:30</option>
-                  <option value="12:45">12:45</option>
-                  <option value="13:00">13:00</option>
-                  <option value="13:15">13:15</option>
-                  <option value="13:30">13:30</option>
-                  <option value="13:45">13:45</option>
-                  <option value="14:00">14:00</option>
-                  <option value="" disabled>-----------</option>
-                  <option value="17:00">17:00</option>
-                  <option value="17:15">17:15</option>
-                  <option value="17:30">17:30</option>
-                  <option value="17:45">17:45</option>
-                  <option value="18:00">18:00</option>
-                  <option value="18:15">18:15</option>
-                  <option value="18:30">18:30</option>
-                  <option value="18:45">18:45</option>
-                  <option value="19:00">19:00</option>
-                  <option value="19:15">19:15</option>
-                  <option value="19:30">19:30</option>
-                  <option value="19:45">19:45</option>
-                  <option value="20:00">20:00</option>
-                  <option value="20:15">20:15</option>
-                  <option value="20:30">20:30</option>
-                  <option value="20:45" data-weekend-only hidden disabled>20:45 (Fri &amp; Sat only)</option>
-                  <option value="21:00" data-weekend-only hidden disabled>21:00 (Fri &amp; Sat only)</option>
-                </select>
-              </div>
+              <fieldset class="booking-times mb-3">
+                <legend>Time</legend>
+                {% assign lunch_times = '12:00,12:15,12:30,12:45,13:00,13:15,13:30,13:45,14:00' | split: ',' %}
+                {% assign evening_times = '17:00,17:15,17:30,17:45,18:00,18:15,18:30,18:45,19:00,19:15,19:30,19:45,20:00,20:15,20:30,20:45,21:00' | split: ',' %}
+                <div class="booking-time-group" role="group" aria-labelledby="lunch-times-heading">
+                  <p id="lunch-times-heading" class="booking-time-heading">Lunch</p>
+                  <div class="booking-time-grid">
+                    {% for time in lunch_times %}
+                    {% assign time_id = time | remove: ':' %}
+                    <div class="booking-time-slot">
+                      <input type="radio" id="time-{{ time_id }}" name="timebooking" value="{{ time }}" required>
+                      <label for="time-{{ time_id }}">{{ time }}</label>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="booking-time-group" role="group" aria-labelledby="evening-times-heading">
+                  <p id="evening-times-heading" class="booking-time-heading">Evening</p>
+                  <div class="booking-time-grid">
+                    {% for time in evening_times %}
+                    {% assign time_id = time | remove: ':' %}
+                    {% assign weekend_only = false %}
+                    {% if time == '20:45' or time == '21:00' %}{% assign weekend_only = true %}{% endif %}
+                    <div class="booking-time-slot"{% if weekend_only %} data-weekend-only hidden{% endif %}>
+                      <input type="radio" id="time-{{ time_id }}" name="timebooking" value="{{ time }}" required{% if weekend_only %} disabled{% endif %}>
+                      <label for="time-{{ time_id }}">{{ time }}</label>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </fieldset>
             </div>
             
             <input type="hidden" name="restaurant" value="{{ location.name }}">
@@ -100,7 +98,7 @@ layout: default
             <div class="form-check mt-4">
               <input class="form-check-input" type="checkbox" id="marketing-opt-in" name="marketing_opt_in" value="Yes" aria-describedby="marketing-opt-in-help">
               <label class="form-check-label" for="marketing-opt-in">{{ marketing_opt_in_wording }}</label>
-              <p id="marketing-opt-in-help" class="form-text text-light">Optional. You can unsubscribe at any time. You can request a booking without opting in.</p>
+              <p id="marketing-opt-in-help" class="form-text text-light">Optional. You can unsubscribe at any time.</p>
             </div>
             <input type="hidden" name="marketing_consent_wording" value="{{ marketing_opt_in_wording | escape }}">
             <input type="hidden" name="marketing_consent_version" value="2026-11-14">
@@ -120,23 +118,27 @@ layout: default
 <script>
 (function () {
   const dateInput = document.getElementById('date');
-  const timeInput = document.getElementById('time');
-  const weekendOptions = timeInput.querySelectorAll('[data-weekend-only]');
+  const bookingForm = dateInput.form;
+  const weekendSlots = bookingForm.querySelectorAll('[data-weekend-only]');
 
   function updateBookingTimes() {
     const selectedDate = dateInput.valueAsDate;
     const day = selectedDate ? selectedDate.getUTCDay() : null;
     const lateBookingsAllowed = day === 5 || day === 6;
-    weekendOptions.forEach(function (option) {
-      if (!lateBookingsAllowed && option.selected) timeInput.value = '';
-      option.disabled = !lateBookingsAllowed;
-      option.hidden = !lateBookingsAllowed;
+    weekendSlots.forEach(function (slot) {
+      const input = slot.querySelector('input');
+      if (!lateBookingsAllowed) input.checked = false;
+      input.disabled = !lateBookingsAllowed;
+      slot.hidden = !lateBookingsAllowed;
     });
   }
 
   dateInput.addEventListener('input', updateBookingTimes);
   dateInput.addEventListener('change', updateBookingTimes);
   window.addEventListener('pageshow', updateBookingTimes);
+  bookingForm.addEventListener('reset', function () {
+    window.setTimeout(updateBookingTimes, 0);
+  });
   updateBookingTimes();
 
   const marketingOptIn = document.getElementById('marketing-opt-in');

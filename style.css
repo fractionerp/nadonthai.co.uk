@@ -1317,6 +1317,77 @@ section {
   color: white;
   box-shadow: 0 0 0 0.25rem rgba(205, 164, 94, 0.25);
 }
+.booking-times {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+.booking-times legend {
+  float: none;
+  margin-bottom: 12px;
+  font: inherit;
+}
+.booking-time-group + .booking-time-group {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(205, 164, 94, 0.3);
+}
+.book-a-table .booking-time-heading {
+  margin-bottom: 10px;
+  color: #cda45e;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.booking-time-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.booking-time-slot {
+  position: relative;
+}
+.booking-time-slot[hidden] {
+  display: none;
+}
+.booking-time-slot input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.booking-time-slot label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 4px;
+  border: 1px solid #625b4b;
+  border-radius: 6px;
+  background: #0c0b09;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+.booking-time-slot label:hover {
+  border-color: #cda45e;
+  background: #29231a;
+}
+.booking-time-slot input:checked + label {
+  border-color: #cda45e;
+  background: #cda45e;
+  color: #0c0b09;
+  font-weight: 700;
+}
+.booking-time-slot input:focus-visible + label {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+@media (min-width: 576px) {
+  .booking-time-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
 .book-a-table input[type="date"] {
   color-scheme: dark;
 }
