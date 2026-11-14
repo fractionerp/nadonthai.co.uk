@@ -40,6 +40,52 @@ const endpoint = 'https://formspree.io/f/maypklnn';
       const marketingLabel = page.locator('label[for="marketing-opt-in"]');
       assert.equal(await marketingLabel.textContent(), marketingWording);
       assert.equal(await marketingLabel.evaluate(label => getComputedStyle(label).fontSize), '14px');
+      const dateField = page.locator('#date');
+      assert.equal(await dateField.getAttribute('readonly'), null, 'Date remains required and picker-enabled');
+      await dateField.evaluate(input => {
+        window.datePickerCalls = 0;
+        const showPicker = input.showPicker;
+        input.showPicker = function () {
+          window.datePickerCalls++;
+          return showPicker.call(this);
+        };
+      });
+      // Click the date text and empty space, not just the calendar icon.
+      const dateBounds = await dateField.boundingBox();
+      for (const x of [8, Math.floor(dateBounds.width / 2)]) {
+        const callsBefore = await page.evaluate(() => window.datePickerCalls);
+        await dateField.click({ position: { x, y: dateBounds.height / 2 } });
+        assert.equal(await page.evaluate(() => window.datePickerCalls), callsBefore + 1);
+        await page.keyboard.press('Escape');
+      }
+      assert.equal(await dateField.getAttribute('inputmode'), 'none', 'Picker opened without errors');
+      for (const key of ['Enter', 'Space', 'Alt+ArrowDown']) {
+        await dateField.focus();
+        const callsBefore = await page.evaluate(() => window.datePickerCalls);
+        await page.keyboard.press(key);
+        assert.equal(await page.evaluate(() => window.datePickerCalls), callsBefore + 1);
+        await page.keyboard.press('Escape');
+      }
+      await dateField.fill('2026-11-20');
+      await dateField.click({ position: { x: 8, y: dateBounds.height / 2 } });
+      await page.keyboard.press('ArrowRight');
+      await page.keyboard.press('Enter');
+      assert.equal(await dateField.inputValue(), '2026-11-21', 'Native calendar still supports keyboard date selection');
+      await dateField.fill('2026-11-20');
+      await dateField.focus();
+      await page.keyboard.type('01012030');
+      for (const key of ['ArrowUp', 'ArrowDown', 'Backspace', 'Delete']) await page.keyboard.press(key);
+      assert.equal(await dateField.inputValue(), '2026-11-20', 'Typing cannot change the selected date');
+      for (const type of ['paste', 'drop']) {
+        assert.equal(await dateField.evaluate((input, type) =>
+          input.dispatchEvent(new Event(type, { bubbles: true, cancelable: true })), type), false);
+      }
+      // Native date controls may tab through day/month/year segments first.
+      for (let tab = 0; tab < 6 && await dateField.evaluate(input => input === document.activeElement); tab++) {
+        await page.keyboard.press('Tab');
+      }
+      assert.equal(await dateField.evaluate(input => input === document.activeElement), false, 'Tab still moves focus');
+      await dateField.fill('');
       assert.equal(await page.locator('#marketing-opt-in').isChecked(), false);
       const marketingCheckbox = page.locator('#marketing-opt-in');
       assert.equal(await marketingCheckbox.evaluate(input => getComputedStyle(input).borderTopColor), 'rgb(205, 164, 94)');
@@ -126,9 +172,10 @@ const endpoint = 'https://formspree.io/f/maypklnn';
         assert.equal(submitted.get('marketing_consent_version'), '2026-11-14.2');
         assert.equal(submitted.get('restaurant'), 'Morpeth');
         assert.equal(submitted.get('_replyto'), 'booking-test@example.invalid');
+        assert.equal(submitted.get('date'), optIn ? '2026-11-20' : '2026-11-22');
       }
       assert.deepEqual(errors, []);
-      console.log(width + 'px: layout, keyboard, required selection, weekday/weekend rules, reset and intercepted Formspree posts pass');
+      console.log(width + 'px: clickable date picker, typing blocked, keyboard, layout, required selection, weekday/weekend rules, reset and intercepted Formspree posts pass');
       await context.close();
     }
 
@@ -141,6 +188,27 @@ const endpoint = 'https://formspree.io/f/maypklnn';
     assert.equal(await page.locator('#time-2100').isDisabled(), true);
     await context.close();
     console.log('No-JavaScript standard time selection passes. No bookings sent to Formspree.');
+
+    // A missing/restricted showPicker must leave a usable native date control.
+    for (const restricted of [false, true]) {
+      const fallback = await browser.newContext({ ignoreHTTPSErrors: true });
+      await fallback.addInitScript(restricted => {
+        Object.defineProperty(HTMLInputElement.prototype, 'showPicker', {
+          configurable: true,
+          value: restricted ? function () { throw new DOMException('Restricted picker', 'SecurityError'); } : undefined
+        });
+      }, restricted);
+      const fallbackPage = await fallback.newPage();
+      await fallbackPage.goto(url, { waitUntil: 'networkidle' });
+      const date = fallbackPage.locator('#date');
+      if (restricted) await date.click();
+      assert.equal(await date.getAttribute('inputmode'), null);
+      assert.equal(await date.getAttribute('readonly'), null);
+      await date.fill('2026-11-20');
+      assert.equal(await date.inputValue(), '2026-11-20');
+      await fallback.close();
+    }
+    console.log('Unsupported/restricted picker fallbacks pass.');
   } finally {
     await browser.close();
   }

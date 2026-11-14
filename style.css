@@ -1410,6 +1410,7 @@ section {
   }
 }
 .book-a-table input[type="date"] {
+  cursor: pointer;
   color-scheme: dark;
 }
 .book-a-table p {

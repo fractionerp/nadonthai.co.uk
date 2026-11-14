@@ -54,7 +54,7 @@ layout: default
             <div class="form-row">
               <div class="mb-3">
                 <label for="date" class="form-label">Date</label>
-                <input type="date" class="form-control" id="date" name="date" required>
+                <input type="date" class="form-control" id="date" name="date" inputmode="none" required>
               </div>
               
               <fieldset class="booking-times mb-3">
@@ -120,6 +120,36 @@ layout: default
   const dateInput = document.getElementById('date');
   const bookingForm = dateInput.form;
   const weekendSlots = bookingForm.querySelectorAll('[data-weekend-only]');
+
+  // Keep the native, required date control: readonly would disable its picker.
+  // Older browsers retain their native date entry if showPicker is unavailable.
+  if (typeof dateInput.showPicker === 'function') {
+    let pickerAvailable = true;
+    function openDatePicker() {
+      try {
+        dateInput.showPicker();
+      } catch (error) {
+        // Embedded pages or browser restrictions must not make booking impossible.
+        pickerAvailable = false;
+        dateInput.removeAttribute('inputmode');
+      }
+    }
+    dateInput.addEventListener('click', openDatePicker);
+    dateInput.addEventListener('keydown', function (event) {
+      if (!pickerAvailable || event.key === 'Tab' || event.key === 'Escape') return;
+      event.preventDefault();
+      if (event.key === 'Enter' || event.key === ' ' || (event.altKey && event.key === 'ArrowDown')) {
+        openDatePicker();
+      }
+    });
+    ['paste', 'drop'].forEach(function (type) {
+      dateInput.addEventListener(type, function (event) {
+        if (pickerAvailable) event.preventDefault();
+      });
+    });
+  } else {
+    dateInput.removeAttribute('inputmode');
+  }
 
   function updateBookingTimes() {
     const selectedDate = dateInput.valueAsDate;
