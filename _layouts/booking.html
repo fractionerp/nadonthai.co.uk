@@ -95,10 +95,21 @@ layout: default
             
             <input type="hidden" name="restaurant" value="{{ location.name }}">
             <input type="hidden" name="_next" value="{{ site.url }}{{ site.baseurl }}/success-{{ page.location_id }}/">
+
+            {% if page.location_id == 'morpeth' %}
+            {% assign marketing_opt_in_wording = 'I would like to receive special offers and marketing emails from Nadon Thai.' %}
+            <div class="form-check mt-4">
+              <input class="form-check-input" type="checkbox" id="marketing-opt-in" name="marketing_opt_in" value="Yes" aria-describedby="marketing-opt-in-help">
+              <label class="form-check-label" for="marketing-opt-in">{{ marketing_opt_in_wording }}</label>
+              <p id="marketing-opt-in-help" class="form-text text-light">Optional. You can unsubscribe at any time. You can request a booking without opting in.</p>
+            </div>
+            <input type="hidden" name="marketing_consent_wording" value="{{ marketing_opt_in_wording | escape }}">
+            <input type="hidden" name="marketing_consent_version" value="2026-11-14">
+            {% endif %}
             
             <div class="text-center mt-4">
               <button type="submit" class="btn btn-primary">Send Request</button>
-              <p style="color: var(--text-muted); font-size: 13px; margin-top: 15px;">By submitting this form you are accepting the terms of our privacy policy.</p>
+              <p style="color: var(--text-muted); font-size: 13px; margin-top: 15px;">We use your details to handle your booking request. See our <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a>.</p>
             </div>
           </form>
         </div>
@@ -128,5 +139,14 @@ layout: default
   dateInput.addEventListener('change', updateBookingTimes);
   window.addEventListener('pageshow', updateBookingTimes);
   updateBookingTimes();
+
+  const marketingOptIn = document.getElementById('marketing-opt-in');
+  if (marketingOptIn) {
+    // Native checkboxes omit unchecked values. Record an explicit, single Yes/No
+    // in both ordinary Formspree posts and FormData-based submissions.
+    marketingOptIn.form.addEventListener('formdata', function (event) {
+      event.formData.set('marketing_opt_in', marketingOptIn.checked ? 'Yes' : 'No');
+    });
+  }
 }());
 </script>
