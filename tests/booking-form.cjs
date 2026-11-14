@@ -36,6 +36,11 @@ const endpoint = 'https://formspree.io/f/maypklnn';
       };
 
       await visit();
+      const marketingWording = 'Receive special offers and marketing emails from Nadon Thai';
+      const marketingLabel = page.locator('label[for="marketing-opt-in"]');
+      assert.equal(await marketingLabel.textContent(), marketingWording);
+      assert.equal(await marketingLabel.evaluate(label => getComputedStyle(label).fontSize), '14px');
+      assert.equal(await page.locator('#marketing-opt-in').isChecked(), false);
       assert.equal(await page.locator('select[name="timebooking"]').count(), 0);
       assert.equal(await chosen(), 0);
       assert.equal(await page.locator('.booking-time-slot:visible').count(), 24);
@@ -101,6 +106,8 @@ const endpoint = 'https://formspree.io/f/maypklnn';
         ]);
         assert.deepEqual(submitted.getAll('timebooking'), [time]);
         assert.deepEqual(submitted.getAll('marketing_opt_in'), [optIn ? 'Yes' : 'No']);
+        assert.equal(submitted.get('marketing_consent_wording'), marketingWording);
+        assert.equal(submitted.get('marketing_consent_version'), '2026-11-14.2');
         assert.equal(submitted.get('restaurant'), 'Morpeth');
         assert.equal(submitted.get('_replyto'), 'booking-test@example.invalid');
       }

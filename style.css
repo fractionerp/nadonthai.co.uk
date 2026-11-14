@@ -1317,6 +1317,9 @@ section {
   color: white;
   box-shadow: 0 0 0 0.25rem rgba(205, 164, 94, 0.25);
 }
+.book-a-table label[for="marketing-opt-in"] {
+  font-size: 14px;
+}
 .booking-times {
   min-width: 0;
   padding: 0;

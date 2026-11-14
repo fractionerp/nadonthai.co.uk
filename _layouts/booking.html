@@ -94,14 +94,14 @@ layout: default
             <input type="hidden" name="_next" value="{{ site.url }}{{ site.baseurl }}/success-{{ page.location_id }}/">
 
             {% if page.location_id == 'morpeth' %}
-            {% assign marketing_opt_in_wording = 'I would like to receive special offers and marketing emails from Nadon Thai.' %}
+            {% assign marketing_opt_in_wording = 'Receive special offers and marketing emails from Nadon Thai' %}
             <div class="form-check mt-4">
               <input class="form-check-input" type="checkbox" id="marketing-opt-in" name="marketing_opt_in" value="Yes" aria-describedby="marketing-opt-in-help">
               <label class="form-check-label" for="marketing-opt-in">{{ marketing_opt_in_wording }}</label>
               <p id="marketing-opt-in-help" class="form-text text-light">Optional. You can unsubscribe at any time.</p>
             </div>
             <input type="hidden" name="marketing_consent_wording" value="{{ marketing_opt_in_wording | escape }}">
-            <input type="hidden" name="marketing_consent_version" value="2026-11-14">
+            <input type="hidden" name="marketing_consent_version" value="2026-11-14.2">
             {% endif %}
             
             <div class="text-center mt-4">
