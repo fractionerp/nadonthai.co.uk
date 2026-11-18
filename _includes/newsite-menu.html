@@ -1,0 +1,61 @@
+{% assign menu = include.menu %}
+{% assign menu_group = include.group %}
+<details class="service-menu" id="menu-{{ include.menu_id }}"{% if include.menu_id == 'evening' %} open{% endif %}>
+  <summary><h3>{{ menu.title }} menu</h3></summary>
+  <div class="service-body">
+    {% if include.source_file %}
+      <a class="print-menu" href="{{ include.source_file.file | prepend: '/' | relative_url }}">{{ menu.title }} menu PDF</a>
+    {% endif %}
+    {% if menu.note %}<p class="menu-description">{{ menu.note }}</p>{% endif %}
+    {% if menu.options %}
+    <dl class="price-options" aria-label="Menu prices">
+      {% for option in menu.options %}
+      <div><dt>{{ option.name }}</dt><dd>{{ option.price }}</dd></div>
+      {% endfor %}
+    </dl>
+    {% endif %}
+    {% if menu.terms %}<p class="menu-note">{{ menu.terms }}</p>{% endif %}
+    {% if menu.sections.size > 1 %}
+    <nav class="section-nav" aria-label="{{ menu.title }} menu sections">
+      {% for section in menu.sections %}
+        {% assign section_id = section.title | slugify %}
+        <a href="#{{ include.menu_id }}-{{ section_id }}">{{ section.title }}</a>
+      {% endfor %}
+    </nav>
+    {% endif %}
+    {% for section in menu.sections %}
+      {% assign section_id = section.title | slugify %}
+      <section class="dish-section" id="{{ include.menu_id }}-{{ section_id }}" aria-labelledby="{{ include.menu_id }}-{{ section_id }}-title">
+        <h4 id="{{ include.menu_id }}-{{ section_id }}-title">{{ section.title }}</h4>
+        {% if section.note %}<p class="menu-note">{{ section.note }}</p>{% endif %}
+        {% if section.options %}
+          <p class="price-label">Options for dishes without a listed price</p>
+          <dl class="price-options" aria-label="{{ section.title }} prices by option">
+            {% for option in section.options %}
+              {% assign option_price = option.price[menu_group] | default: option.price %}
+              <div><dt>{{ option.name }}</dt><dd>{{ option_price }}</dd></div>
+            {% endfor %}
+          </dl>
+        {% endif %}
+        <ul class="dish-grid">
+          {% for item in section.items %}
+            {% if item.group and item.group != menu_group %}{% continue %}{% endif %}
+            {% assign dish_price = item.price %}
+            {% if dish_price.city != nil or dish_price.morpeth != nil %}
+              {% assign dish_price = dish_price[menu_group] %}
+            {% endif %}
+            {% if dish_price == false %}{% continue %}{% endif %}
+            {% assign dish_description = item.description[menu_group] | default: item.description %}
+            {% assign dish_note = item.note %}
+            {% if dish_note.city or dish_note.morpeth %}{% assign dish_note = dish_note[menu_group] %}{% endif %}
+            <li class="dish">
+              <div class="dish-heading"><h5>{{ item.name }}</h5>{% if dish_price %}<span>{{ dish_price }}</span>{% endif %}</div>
+              {% if dish_description %}<p>{{ dish_description }}</p>{% endif %}
+              {% if dish_note %}<p class="dish-note">{{ dish_note }}</p>{% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endfor %}
+  </div>
+</details>

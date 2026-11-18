@@ -1,0 +1,108 @@
+---
+layout: newsite
+---
+{% assign venue = site.data.locations | where: 'id', page.location_id | first %}
+{% assign group = 'city' %}
+{% if venue.id == 'morpeth' %}{% assign group = 'morpeth' %}{% endif %}
+{% assign menu_ids = 'evening,lunch,takeaway,happy-hour,childrens,dessert,christmas' | split: ',' %}
+{% assign file_labels = 'Evening Menu,Lunch Menu,Take Away,Happy Hour,Childrens,Dessert,Christmas Menu' | split: ',' %}
+{% assign directions = venue.address.street | append: ', ' | append: venue.address.city | append: ' ' | append: venue.address.postcode | url_encode %}
+{% assign booking_url = venue.booking_slug | prepend: '/' | append: '/' | relative_url %}
+
+<main id="main">
+  <section class="hero location-hero">
+    <div class="hero-copy">
+      <a class="back-link" href="{{ '/newsite/#restaurants' | relative_url }}">← All restaurants</a>
+      <p class="eyebrow">Nadon Thai</p>
+      <h1>{{ venue.name }}</h1>
+      <p class="lead">{{ venue.description }}</p>
+      <div class="actions">
+        <a class="button primary" href="{{ booking_url }}">Book a table</a>
+        <a class="button secondary" href="#menus">View menus</a>
+      </div>
+    </div>
+    <picture class="hero-photo">
+      <source media="(max-width: 640px)" srcset="{{ '/assets/img/medium/' | append: venue.image_file | relative_url }}">
+      <img src="{{ '/assets/img/large/' | append: venue.image_file | relative_url }}" width="1200" height="{% if venue.id == 'durham' %}720{% else %}795{% endif %}" fetchpriority="high" alt="The dining room at Nadon Thai {{ venue.name }}">
+    </picture>
+  </section>
+
+  <div class="visit-bar">
+    <div class="wrap visit-inner">
+      <p><strong>{{ venue.address.street }}</strong> <span>{{ venue.address.city }}, {{ venue.address.postcode }}</span></p>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query={{ directions }}&amp;query_place_id={{ venue.place_id }}">Get directions <span aria-hidden="true">↗</span></a>
+      <a href="tel:{{ venue.phone_link }}">{{ venue.phone }}</a>
+      <a href="#visit">Opening hours</a>
+    </div>
+  </div>
+
+  <section class="wrap section menu-section" id="menus" aria-labelledby="menus-title">
+    <div class="section-intro">
+      <h2 id="menus-title">{{ venue.name }} menus</h2>
+      <p>Choose a menu to browse dishes, options and prices.</p>
+    </div>
+    <nav class="menu-nav" aria-label="{{ venue.name }} menu types">
+      {% for menu_id in menu_ids %}
+        {% assign menu = site.data.newsite_menus[menu_id] %}
+        {% if menu_id == 'lunch' %}{% assign menu = menu[group] %}{% endif %}
+        <a href="#menu-{{ menu_id }}">{{ menu.title }}</a>
+      {% endfor %}
+    </nav>
+    {% assign allergy_pdf = venue.menus | where: 'name', 'Allergies' | first %}
+    <aside class="allergy-note">
+      <strong>Food allergies or dietary needs?</strong>
+      Please speak to our team before ordering. We use peanuts and cashews in our kitchen.
+      <a href="{{ allergy_pdf.file | prepend: '/' | relative_url }}">Allergy information (PDF)</a>
+    </aside>
+    {% for menu_id in menu_ids %}
+      {% assign menu = site.data.newsite_menus[menu_id] %}
+      {% if menu_id == 'lunch' %}{% assign menu = menu[group] %}{% endif %}
+      {% assign file_label = file_labels[forloop.index0] %}
+      {% assign source_file = venue.menus | where: 'name', file_label | first %}
+      {% include newsite-menu.html menu=menu menu_id=menu_id group=group source_file=source_file %}
+    {% endfor %}
+    {% assign lunchbox = venue.menus | where: 'name', 'Lunchbox Menu' | first %}
+    <p class="extra-menu"><a href="{{ lunchbox.file | prepend: '/' | relative_url }}">Lunchbox menu (image)</a></p>
+  </section>
+
+  <section class="visit-section" id="visit" aria-labelledby="visit-title">
+    <div class="wrap section">
+      <h2 id="visit-title">Visit {{ venue.name }}</h2>
+      <div class="visit-grid">
+        <div>
+          <h3>Opening hours</h3>
+          <dl class="hours">
+            <div><dt>Lunch</dt><dd>{{ venue.hours.lunch }}</dd></div>
+            <div><dt>Dinner</dt><dd>{{ venue.hours.dinner }}<br>{{ venue.hours.weekend_note }}</dd></div>
+          </dl>
+        </div>
+        <div>
+          <h3>Find us</h3>
+          <address>{{ venue.address.street }}<br>{{ venue.address.city }}, {{ venue.address.postcode }}</address>
+          <p><a href="https://www.google.com/maps/search/?api=1&amp;query={{ directions }}&amp;query_place_id={{ venue.place_id }}">Get directions</a> · <a href="mailto:{{ venue.email }}">Email us</a></p>
+        </div>
+        <div>
+          <h3>Takeaway</h3>
+          <p><a href="#menu-takeaway">View the takeaway menu</a></p>
+          <p>Call <a href="tel:{{ venue.phone_link }}">{{ venue.phone }}</a> to arrange collection.</p>
+          {% assign delivery = venue.delivery_links | where: 'preferred', true | first %}
+          {% if delivery %}<p><a href="{{ delivery.url }}">Order on {{ delivery.name }} <span aria-hidden="true">↗</span></a></p>{% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  function openLinkedMenu(hash) {
+    const target = document.getElementById(hash.slice(1));
+    const menu = target?.closest('.service-menu');
+    if (menu) menu.open = true;
+  }
+
+  document.querySelectorAll('a[href^="#menu-"]').forEach(link => {
+    link.addEventListener('click', () => openLinkedMenu(link.hash));
+  });
+  window.addEventListener('hashchange', () => openLinkedMenu(location.hash));
+  openLinkedMenu(location.hash);
+</script>

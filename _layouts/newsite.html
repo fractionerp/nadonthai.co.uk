@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <title>{{ page.title | escape }} | Nadon Thai</title>
+  <meta name="description" content="{{ page.description | escape }}">
+  <link rel="icon" href="{{ '/assets/img/icon.png' | relative_url }}">
+  <script src="{{ '/assets/newsite/type-preview.js' | relative_url }}"></script>
+  <link rel="stylesheet" href="{{ '/assets/newsite/style.css' | relative_url }}">
+</head>
+<body>
+  {% assign restaurant = site.data.locations | where: 'id', page.location_id | first %}
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="{{ '/newsite/' | relative_url }}" class="wordmark">
+        <img src="{{ '/assets/img/nadonlogo.png' | relative_url }}" width="215" height="100" alt="Nadon Thai home">
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="{{ '/newsite/#restaurants' | relative_url }}">Restaurants</a>
+        <a href="{% if restaurant %}#menus{% else %}{{ '/newsite/#food' | relative_url }}{% endif %}">Menus</a>
+        <a class="header-gifts" href="{{ '/gift-vouchers/' | relative_url }}">Gift vouchers</a>
+      </nav>
+      {% if restaurant %}
+        <a class="button primary" href="{{ restaurant.booking_slug | prepend: '/' | append: '/' | relative_url }}">Book a table</a>
+      {% else %}
+        <a class="button primary" href="{{ '/newsite/#restaurants' | relative_url }}">Book a table</a>
+      {% endif %}
+    </div>
+  </header>
+
+  {{ content }}
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <a href="{{ '/newsite/' | relative_url }}" class="wordmark">
+        <img src="{{ '/assets/img/nadonlogo.png' | relative_url }}" width="215" height="100" alt="Nadon Thai home">
+      </a>
+      <nav aria-label="Restaurant locations">
+        {% for venue in site.data.locations %}
+          <a href="{{ '/newsite/' | append: venue.id | append: '/' | relative_url }}">{{ venue.name }}</a>
+        {% endfor %}
+      </nav>
+      <nav aria-label="More from Nadon Thai">
+        <a href="{{ '/gift-vouchers/' | relative_url }}">Gift vouchers</a>
+        <a href="{{ site.social.instagram }}">Instagram</a>
+        <a href="{{ '/privacy-policy/' | relative_url }}">Privacy</a>
+      </nav>
+    </div>
+    <div class="wrap type-preview" hidden>
+      <label for="preview-typeface">Preview heading font</label>
+      <select id="preview-typeface">
+        <option value="display">DM Serif Display</option>
+        <option value="lora">Lora</option>
+        <option value="sans">Source Sans 3</option>
+      </select>
+    </div>
+  </footer>
+</body>
+</html>

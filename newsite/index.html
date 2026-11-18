@@ -1,0 +1,65 @@
+---
+layout: newsite
+title: Thai restaurants in Morpeth, Newcastle and Durham
+description: Family-run Thai restaurants in Morpeth, Newcastle and Durham. Browse local menus and book a table.
+permalink: /newsite/
+noindex: true
+sitemap: false
+---
+<main id="main">
+  <section class="hero home-hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Family-run since 2010</p>
+      <h1>Thai cooking.<br>A warm welcome.</h1>
+      <p class="lead">From a quick lunch to an evening around the table, join us for traditional Thai cooking in Morpeth, Newcastle and Durham.</p>
+      <div class="actions">
+        <a class="button primary" href="#restaurants">Find a restaurant</a>
+        <a class="button secondary" href="#food">Explore the menus</a>
+      </div>
+    </div>
+    <picture class="hero-photo">
+      <source media="(max-width: 640px)" srcset="{{ '/assets/img/gallery/medium/gallery-7.jpg' | relative_url }}">
+      <img src="{{ '/assets/img/gallery/large/gallery-7.jpg' | relative_url }}" width="1200" height="795" fetchpriority="high" alt="Thai curry, noodles and stir-fry on a table at Nadon Thai">
+    </picture>
+  </section>
+
+  <section class="wrap section" id="restaurants" aria-labelledby="restaurants-title">
+    <div class="section-intro">
+      <h2 id="restaurants-title">Find your Nadon Thai</h2>
+      <p>Choose a restaurant to book a table, see its menus or plan your visit.</p>
+    </div>
+    <div class="restaurant-grid">
+      {% for venue in site.data.locations %}
+        {% assign venue_url = '/newsite/' | append: venue.id | append: '/' %}
+        <article class="restaurant-card">
+          <a href="{{ venue_url | relative_url }}" tabindex="-1" aria-hidden="true">
+            <img src="{{ '/assets/img/medium/' | append: venue.image_file | relative_url }}" width="768" height="509" loading="lazy" alt="">
+          </a>
+          <div class="card-copy">
+            <h3><a href="{{ venue_url | relative_url }}">{{ venue.name }}</a></h3>
+            <p>{{ venue.address.street }} · {{ venue.address.postcode }}</p>
+            <div class="actions">
+              <a href="{{ venue_url | append: '#menus' | relative_url }}">View menus<span class="sr-only"> for {{ venue.name }}</span></a>
+              <a href="{{ venue.booking_slug | prepend: '/' | append: '/' | relative_url }}">Book a table<span class="sr-only"> in {{ venue.name }}</span></a>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="food-section" id="food" aria-labelledby="food-title">
+    <div class="wrap food-inner">
+      <img src="{{ '/assets/img/gallery/large/gallery-4.jpg' | relative_url }}" loading="lazy" width="1200" height="795" alt="Thai dishes ready to share at a Nadon Thai table">
+      <div>
+        <h2 id="food-title">A little of what we cook</h2>
+        <p class="lead">Coconut curries, wok-fried noodles, hot and sour soups and dishes to share. Browse lunch, evening and takeaway menus for your restaurant.</p>
+        <ul class="menu-location-links">
+          {% for venue in site.data.locations %}
+          <li><a href="{{ '/newsite/' | append: venue.id | append: '/#menus' | relative_url }}">{{ venue.name }} menus <span aria-hidden="true">↗</span></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
