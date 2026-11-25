@@ -1523,17 +1523,17 @@
         "items": [
           {
             "name": "Duck red curry with jasmine rice",
-            "description": "Roast duck in red coconut curry with pineapple, lychee, cherry tomato and Thai basil."
+            "description": "Roast duck in red coconut curry with pineapple, lychee, cherry tomatoes, Thai basil and a touch of chilli."
           },
           {
             "name": "Drunken udon with duck",
-            "description": "Roast duck, holy basil, fresh chilli and mixed vegetables in spicy basil sauce.",
+            "description": "Roast duck, sweet basil, fresh chilli and mixed vegetables in spicy basil sauce.",
             "note": "Vegetables and tofu available."
           },
           {
-            "name": "Jumbo prawn Pad Thai",
-            "description": "Rice noodles with egg, spring onion, carrot, bean sprouts and ground peanuts.",
-            "note": "Vegetables and tofu available."
+            "name": "Chicken Pad Thai noodles",
+            "description": "Rice noodles stir-fried with chicken, egg, spring onion, carrot, bean sprouts and ground peanuts.",
+            "note": "Vegetables and tofu available. Contains peanuts."
           },
           {
             "name": "Seabass pad cha with jasmine rice",
@@ -1570,6 +1570,10 @@
           {
             "name": "Cheesecake of the day",
             "description": "Ask your server for today's flavour."
+          },
+          {
+            "name": "Fried banana",
+            "description": "Crispy fried banana served with vanilla ice cream."
           }
         ]
       }
