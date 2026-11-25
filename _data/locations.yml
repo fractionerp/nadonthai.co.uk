@@ -27,7 +27,7 @@
     weekend_note: "Friday and Saturday: 17:00 - 22:00"
   menus:
     - name: "Christmas Menu"
-      file: "assets/menus/christmas-menu.pdf"
+      file: "assets/menus/christmas-menu.pdf?v=20261125"
       primary: true
       seasonal: true
     - name: "Evening Menu"
@@ -92,7 +92,7 @@
       url: "https://www.ubereats.com/gb/store/nadon-thai-newcastle/fpz3mTBlT068HZ4Z9o8PJA?diningMode=DELIVERY"
   menus:
     - name: "Christmas Menu"
-      file: "assets/menus/christmas-menu.pdf"
+      file: "assets/menus/christmas-menu.pdf?v=20261125"
       primary: true
       seasonal: true
     - name: "Evening Menu"
@@ -157,7 +157,7 @@
       url: "https://www.ubereats.com/"
   menus:
     - name: "Christmas Menu"
-      file: "assets/menus/christmas-menu.pdf"
+      file: "assets/menus/christmas-menu.pdf?v=20261125"
       primary: true
       seasonal: true
     - name: "Evening Menu"
